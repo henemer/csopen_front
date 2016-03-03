@@ -29,7 +29,7 @@ System.register(['angular2/core', './service'], function(exports_1) {
                     core_1.Component({
                         selector: 'my-app',
                         providers: [service_1.SupplierService],
-                        templateUrl: 'app/app.component.html'
+                        templateUrl: '/app/app.component.html'
                     }), 
                     __metadata('design:paramtypes', [service_1.SupplierService])
                 ], AppComponent);
