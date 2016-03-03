@@ -1,0 +1,17 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Razão Social/Nome</th>
+            <th>Nome Fantasia/Apelido</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#s of suppliers" (click)="onSelect(s)">
+            <td>{{s.code}}</td>
+            <td>{{s.company}}</td>
+            <td>{{s.trade}}</td>
+        </tr>
+    </tbody>
+    
+</table>

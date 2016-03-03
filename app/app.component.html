@@ -1,9 +1,11 @@
 <h1>CS Open</h1>
     
     
-    <ul> 
+   <!-- <ul> 
         <li *ngFor="#s of suppliers"> 
             {{s.code}} - {{ s.company}} - Alterar
         </li>
     </ul>
+    -->
     
+    <supplier-list [suppliers]="suppliers" (selectSupplier)="onSelectSupplier($event)"></supplier-list>

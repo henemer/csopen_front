@@ -1,4 +1,4 @@
-System.register(['angular2/core', './service'], function(exports_1) {
+System.register(['angular2/core', './service', './supplier/supplierList.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './service'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, service_1;
+    var core_1, service_1, supplierList_component_1;
     var AppComponent;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(['angular2/core', './service'], function(exports_1) {
             },
             function (service_1_1) {
                 service_1 = service_1_1;
+            },
+            function (supplierList_component_1_1) {
+                supplierList_component_1 = supplierList_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -29,7 +32,8 @@ System.register(['angular2/core', './service'], function(exports_1) {
                     core_1.Component({
                         selector: 'my-app',
                         providers: [service_1.SupplierService],
-                        templateUrl: '/app/app.component.html'
+                        templateUrl: '/app/app.component.html',
+                        directives: [supplierList_component_1.SupplierListComponent]
                     }), 
                     __metadata('design:paramtypes', [service_1.SupplierService])
                 ], AppComponent);
