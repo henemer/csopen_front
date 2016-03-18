@@ -1,1 +1,1 @@
-{"version":3,"file":"config.service.js","sourceRoot":"","sources":["config.service.ts"],"names":["Config","Config.constructor"],"mappings":";;;;;YAAA;gBAAAA;gBAEAC,CAACA;gBADUD,eAAQA,GAAUA,4BAA4BA,CAACA;gBAC1DA,aAACA;YAADA,CAACA,AAFD,IAEC;YAFD,2BAEC,CAAA"}
+{"version":3,"file":"config.service.js","sourceRoot":"","sources":["config.service.ts"],"names":["Config","Config.constructor"],"mappings":";;;;;YAAA;gBAAAA;gBAEAC,CAACA;gBADUD,eAAQA,GAAUA,wBAAwBA,CAACA;gBACtDA,aAACA;YAADA,CAACA,AAFD,IAEC;YAFD,2BAEC,CAAA"}

@@ -1,4 +1,4 @@
-System.register(['angular2/core', './service', './supplier/supplierList.component'], function(exports_1) {
+System.register(['angular2/core', './customer/customer.component', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,34 +8,35 @@ System.register(['angular2/core', './service', './supplier/supplierList.componen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, service_1, supplierList_component_1;
+    var core_1, customer_component_1, router_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (service_1_1) {
-                service_1 = service_1_1;
+            function (customer_component_1_1) {
+                customer_component_1 = customer_component_1_1;
             },
-            function (supplierList_component_1_1) {
-                supplierList_component_1 = supplierList_component_1_1;
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(supplierService) {
-                    var _this = this;
-                    supplierService.getSuppliers()
-                        .subscribe(function (suppliers) { return _this.suppliers = suppliers; });
+                function AppComponent() {
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        providers: [service_1.SupplierService],
                         templateUrl: '/app/app.component.html',
-                        directives: [supplierList_component_1.SupplierListComponent]
-                    }), 
-                    __metadata('design:paramtypes', [service_1.SupplierService])
+                        directives: [customer_component_1.CustomerComponent, router_1.ROUTER_DIRECTIVES]
+                    }),
+                    router_1.RouteConfig([
+                        // { path: '/home', name: 'Home', component: HomeComponent,
+                        // useAsDefault: true },
+                        { path: '/customer', name: 'Customer', component: customer_component_1.CustomerComponent },
+                    ]), 
+                    __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
             })();

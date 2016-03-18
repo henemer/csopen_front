@@ -6,7 +6,7 @@ System.register([], function(exports_1) {
             Config = (function () {
                 function Config() {
                 }
-                Config.BASE_URL = "http://127.0.0.1:8000/api/";
+                Config.BASE_URL = "http://127.0.0.1:8000/";
                 return Config;
             })();
             exports_1("Config", Config);

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <title>Angular 2 QuickStart</title>
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
@@ -9,7 +10,8 @@
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.dev.js"></script>
     <script src="node_modules/angular2/bundles/router.dev.js"></script>
-    
+    <base htref="/">
+   
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script>
         System.config({
@@ -22,6 +24,8 @@
         });
         System.import('app/boot').then(null, console.error.bind(console));
     </script>
+    
+    
 </head>
 <body>
     <my-app>Loading...</my-app>

@@ -1,20 +1,19 @@
 import {Component} from 'angular2/core'
-import {Supplier} from './model'
-import {SupplierService} from './service'
-import {SupplierListComponent} from './supplier/supplierList.component'
-
+import {CustomerComponent} from './customer/customer.component'
+import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router'
 
 @Component({
     selector: 'my-app',
-    providers: [SupplierService],
     templateUrl: '/app/app.component.html',
-    directives: [SupplierListComponent]
+    directives: [CustomerComponent, ROUTER_DIRECTIVES]
     
 })
+ @RouteConfig([
+// { path: '/home', name: 'Home', component: HomeComponent,
+// useAsDefault: true },
+    { path: '/customer', name: 'Customer', component: CustomerComponent },
+// { path: '/dashboard', name: 'Dashboard', component: DashboardComponent }
+ ])
 export class AppComponent{
-    public suppliers:Array<Supplier>;
-    constructor(supplierService:SupplierService) {
-        supplierService.getSuppliers()
-            .subscribe(suppliers => this.suppliers = suppliers)
-    }
+    
  }

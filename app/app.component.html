@@ -1,11 +1,9 @@
 <h1>CS Open</h1>
+ 
+ 
+<ul>
+<li><a [routerLink]="['Customer']">Clientes</a></li>
+</ul>    
+ <router-outlet></router-outlet>  
     
-    
-   <!-- <ul> 
-        <li *ngFor="#s of suppliers"> 
-            {{s.code}} - {{ s.company}} - Alterar
-        </li>
-    </ul>
-    -->
-    
-    <supplier-list [suppliers]="suppliers" (selectSupplier)="onSelectSupplier($event)"></supplier-list>
+   

@@ -1,4 +1,4 @@
-System.register(['./supplier/supplier'], function(exports_1) {
+System.register(['./supplier/supplier', './customer/customer'], function(exports_1) {
     function exportStar_1(m) {
         var exports = {};
         for(var n in m) {
@@ -10,6 +10,9 @@ System.register(['./supplier/supplier'], function(exports_1) {
         setters:[
             function (supplier_1_1) {
                 exportStar_1(supplier_1_1);
+            },
+            function (customer_1_1) {
+                exportStar_1(customer_1_1);
             }],
         execute: function() {
         }

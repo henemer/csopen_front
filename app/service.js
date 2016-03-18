@@ -1,4 +1,4 @@
-System.register(['./config/config.service', './supplier/supplier.service'], function(exports_1) {
+System.register(['./config/config.service', './supplier/supplier.service', './customer/customer.service'], function(exports_1) {
     function exportStar_1(m) {
         var exports = {};
         for(var n in m) {
@@ -13,6 +13,9 @@ System.register(['./config/config.service', './supplier/supplier.service'], func
             },
             function (supplier_service_1_1) {
                 exportStar_1(supplier_service_1_1);
+            },
+            function (customer_service_1_1) {
+                exportStar_1(customer_service_1_1);
             }],
         execute: function() {
         }

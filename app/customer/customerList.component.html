@@ -1,0 +1,17 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome/Razão Social/Nome</th>
+            <th>Apelido/Nome Fantasia</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#c of customers" (click)="onSelect(c)">
+            <td>{{c.code}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.nickname}}</td>
+        </tr>
+    </tbody>
+    
+</table>
