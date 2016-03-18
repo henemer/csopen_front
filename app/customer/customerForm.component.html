@@ -1,0 +1,19 @@
+<h3>Form de Clientes</h3>
+<div class=row>
+   <div class="col-md-8">
+        <form>
+            <div class="form-group">
+                <input type="input" class="form-control" id="codigo" required placeholder="Código" [(ngModel)]="customer.code">
+            </div>
+            
+            <div class="form-group">
+                <input type="input" class="form-control" id="name" required placeholder="Nome/Razão Social" [(ngModel)]="customer.name">
+            </div>
+            <div class="form-group">
+                <input type="input" class="form-control" id="nickname" required placeholder="Apelido/Nome Fantasia" [(ngModel)]="customer.nickname">
+            </div>
+            <button type="button" class="btn btn-default" (click)="onButtonOkClick()">OK</button>    
+        </form>
+    </div>
+</div> 
+    

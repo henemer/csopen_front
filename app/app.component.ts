@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core'
 import {CustomerComponent} from './customer/customer.component'
-import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router'
+import {ROUTER_DIRECTIVES, RouteConfig,  LocationStrategy,
+  HashLocationStrategy} from 'angular2/router'
 
 @Component({
     selector: 'my-app',

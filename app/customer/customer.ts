@@ -1,24 +1,21 @@
 export class Customer {
-    constructor(
-        public id:number,
-        public code:number,
-        public nickname:string,
-        public address:string, 
-        public number:string,
-        public district:string,
-        public city:string,
-        public state:string,
-        public zipcode:string,
-        public cpf:string, 
-        public rg:string,
-        public phone1:string,        
-        public phone2:string,
-        public phone3:string,
-        public contact:string,
-        public email:string,
-        public complement:string,
-        public observations:string
-        
-    ) {}
+    id:number;
+    code:number;
+    nickname:string;
+    address:string; 
+    number:string;
+    district:string;
+    city:string;
+    state:string;
+    zipcode:string;
+    cpf:string; 
+    rg:string;
+    phone1:string;        
+    phone2:string;
+    phone3:string;
+    contact:string;
+    email:string;
+    complement:string;
+    observations:string;
 }
 
