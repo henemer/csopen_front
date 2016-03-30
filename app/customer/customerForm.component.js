@@ -26,26 +26,21 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1)
                 function CustomerFormComponent(customerService) {
                     this.customerService = customerService;
                     this.customer = new model_1.Customer();
-                    this.saveCustomer = new core_1.EventEmitter();
-                    this.editTitle = false;
+                    this.closeForm = new core_1.EventEmitter();
                 }
-                CustomerFormComponent.prototype.onTitleClick = function () {
-                    this.editTitle = true;
-                };
                 CustomerFormComponent.prototype.onButtonGravarClick = function (event) {
-                    console.log(this.customer);
                     this.customerService.insert(this.customer).subscribe(function (result) { return console.log('ok'); }, function (error) { return console.log(error); });
-                    ///      this.saveCustomer.next({});
                 };
-                CustomerFormComponent.prototype.ngOnChanges = function () {
-                    this.editTitle = false;
+                CustomerFormComponent.prototype.closeFormCustomer = function (Event) {
+                    console.log('closeFormCustomer');
+                    this.closeForm.next({});
                 };
                 CustomerFormComponent = __decorate([
                     core_1.Component({
                         selector: 'customer-form',
                         templateUrl: 'app/customer/customerForm.component.html',
-                        inputs: ['customer'],
-                        outputs: ['saveCustomer'],
+                        inputs: ['customer', 'selectedCustomer'],
+                        outputs: ['closeForm'],
                         providers: [service_1.CustomerService]
                     }), 
                     __metadata('design:paramtypes', [service_1.CustomerService])

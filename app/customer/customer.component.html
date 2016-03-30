@@ -1,12 +1,18 @@
-<button type="button" class="btn btn-default" (click)="newCustomer()">Novo Cliente</button>
+<button *ngIf="!selectedCustomer" type="button" class="btn btn-primary" (click)="newCustomer()">Novo Cliente</button>
 
  <customer-form  *ngIf="selectedCustomer"
+    [selectedCustomer]="selectedCustomer"
     [customer]="selectedCustomer" 
-    (saveCustomer)="onSaveCustomer($event)" >
+    (saveCustomer)="onSaveCustomer($event)"
+    (closeForm)="onCloseForm($event)" >
 </customer-form>
 
 
- <customer-list [customers]="customers" (selectCustomer)="onSelectCustomer($event)" (saveCustomer)="onSaveCustomer($event)"></customer-list>
+ <customer-list *ngIf="!selectedCustomer" 
+    [customers]="customers" 
+    (selectCustomer)="onSelectCustomer($event)" 
+    (saveCustomer)="onSaveCustomer($event)">
+</customer-list>
 
 
  

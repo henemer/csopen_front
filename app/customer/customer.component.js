@@ -40,11 +40,11 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                     this.customerService.getNextCode(c);
                     this.selectedCustomer = c;
                 };
-                CustomerComponent.prototype.onSaveCustomer = function (customer) {
-                    console.log(customer);
-                };
                 CustomerComponent.prototype.onSelectCustomer = function (customer) {
                     this.selectedCustomer = customer;
+                };
+                CustomerComponent.prototype.onCloseForm = function () {
+                    this.selectedCustomer = null;
                 };
                 CustomerComponent = __decorate([
                     core_1.Component({

@@ -5,32 +5,26 @@ import {CustomerService} from '../service'
 @Component({
     selector:'customer-form',
     templateUrl: 'app/customer/customerForm.component.html',
-    inputs:['customer'],
-    outputs:['saveCustomer'],
+    inputs:['customer', 'selectedCustomer'],
+    outputs:['closeForm'],
     providers: [CustomerService]
 })
 export class CustomerFormComponent{
     private customer:Customer = new Customer();
-    private saveCustomer = new EventEmitter();
-    private editTitle:boolean = false;
+    private closeForm = new EventEmitter();
     
     constructor(private customerService:CustomerService) {}
     
-    onTitleClick() {
-        this.editTitle = true;
-    }
-    
     onButtonGravarClick(event) {
-        console.log(this.customer);
         this.customerService.insert(this.customer).subscribe(
             result => console.log('ok'),
             error => console.log(error)
         );        
-  ///      this.saveCustomer.next({});
+  
     }
     
-    ngOnChanges() {
-        this.editTitle = false;
-    }
     
+    closeFormCustomer(Event) {
+        this.closeForm.next({});
+    }
 }

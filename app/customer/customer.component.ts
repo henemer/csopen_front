@@ -29,12 +29,12 @@ export class CustomerComponent{
         this.selectedCustomer = c;
     }   
     
-    onSaveCustomer(customer) {
-        console.log(customer);
-    }         
-    
     
     onSelectCustomer(customer) {
        this.selectedCustomer = customer;
     }
+    
+    onCloseForm() {
+        this.selectedCustomer = null;
+    }    
  }
