@@ -32,7 +32,6 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1)
                     this.customerService.insert(this.customer).subscribe(function (result) { return console.log('ok'); }, function (error) { return console.log(error); });
                 };
                 CustomerFormComponent.prototype.closeFormCustomer = function (Event) {
-                    console.log('closeFormCustomer');
                     this.closeForm.next({});
                 };
                 CustomerFormComponent = __decorate([
