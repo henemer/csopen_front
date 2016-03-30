@@ -14,17 +14,27 @@ import {CustomerFormComponent} from '../customer/customerForm.component'
 export class CustomerComponent{
     public customers:Array<Customer>;
     public selectedCustomer;
+    public customerService:CustomerService
     
     constructor(customerService:CustomerService) {
+        this.customerService = customerService;
         customerService.getCustomers()
             .subscribe(customers => this.customers = customers);
             
     }
     
    newCustomer() {
-        var c:Customer = new Customer(); //0,1,'emer','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r');
+        var c:Customer = new Customer();
+        this.customerService.getNextCode(c);
         this.selectedCustomer = c;
-        console.log(c);
-    }            
+    }   
     
+    onSaveCustomer(customer) {
+        console.log(customer);
+    }         
+    
+    
+    onSelectCustomer(customer) {
+       this.selectedCustomer = customer;
+    }
  }

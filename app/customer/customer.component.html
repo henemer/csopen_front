@@ -2,11 +2,11 @@
 
  <customer-form  *ngIf="selectedCustomer"
     [customer]="selectedCustomer" 
-    (closeForm)="onCloseCustomerForm($event)" >
+    (saveCustomer)="onSaveCustomer($event)" >
 </customer-form>
 
 
- <customer-list [customers]="customers" (selectCustomer)="onSelectCustomer($event)"></customer-list>
+ <customer-list [customers]="customers" (selectCustomer)="onSelectCustomer($event)" (saveCustomer)="onSaveCustomer($event)"></customer-list>
 
 
  

@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', '../model', '../service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,24 +8,34 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, model_1, service_1;
     var CustomerFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (model_1_1) {
+                model_1 = model_1_1;
+            },
+            function (service_1_1) {
+                service_1 = service_1_1;
             }],
         execute: function() {
             CustomerFormComponent = (function () {
-                function CustomerFormComponent() {
-                    this.closeForm = new core_1.EventEmitter();
+                function CustomerFormComponent(customerService) {
+                    this.customerService = customerService;
+                    this.customer = new model_1.Customer();
+                    this.saveCustomer = new core_1.EventEmitter();
                     this.editTitle = false;
                 }
                 CustomerFormComponent.prototype.onTitleClick = function () {
                     this.editTitle = true;
                 };
-                CustomerFormComponent.prototype.onButtonOkClick = function () {
-                    this.closeForm.next({});
+                CustomerFormComponent.prototype.onButtonGravarClick = function (event) {
+                    console.log(this.customer);
+                    this.customerService.insert(this.customer).subscribe(function (result) { return console.log('ok'); }, function (error) { return console.log(error); });
+                    ///      this.saveCustomer.next({});
                 };
                 CustomerFormComponent.prototype.ngOnChanges = function () {
                     this.editTitle = false;
@@ -35,9 +45,10 @@ System.register(['angular2/core'], function(exports_1) {
                         selector: 'customer-form',
                         templateUrl: 'app/customer/customerForm.component.html',
                         inputs: ['customer'],
-                        outputs: ['closeForm']
+                        outputs: ['saveCustomer'],
+                        providers: [service_1.CustomerService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [service_1.CustomerService])
                 ], CustomerFormComponent);
                 return CustomerFormComponent;
             })();

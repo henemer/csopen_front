@@ -16,5 +16,7 @@ import {ROUTER_DIRECTIVES, RouteConfig,  LocationStrategy,
 // { path: '/dashboard', name: 'Dashboard', component: DashboardComponent }
  ])
 export class AppComponent{
-    
+    onSelectVideo(video){
+       console.log(JSON.stringify(video));
+}
  }

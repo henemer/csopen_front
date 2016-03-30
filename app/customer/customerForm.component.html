@@ -1,19 +1,36 @@
 <h3>Form de Clientes</h3>
 <div class=row>
-   <div class="col-md-8">
-        <form>
-            <div class="form-group">
-                <input type="input" class="form-control" id="codigo" required placeholder="Código" [(ngModel)]="customer.code">
+   <div class="col-md-12">
+        <form (ngSubmit)="onButtonGravarClick(f)" #f>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="codigo">Código</label>
+                    <input type="input" class="form-control" id="codigo" required placeholder="Código" [(ngModel)]="customer.code">
+                </div>
+                
+                <div class="form-group col-md-9">
+                    <label for="nome">Nome/Razão Social</label>
+                    <input type="input" class="form-control" id="name" required placeholder="Nome/Razão Social" [(ngModel)]="customer.name">
+                </div>
             </div>
-            
-            <div class="form-group">
-                <input type="input" class="form-control" id="name" required placeholder="Nome/Razão Social" [(ngModel)]="customer.name">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="nickname">Apelido/Nome Fantasia</label>
+                    <input type="input" class="form-control" id="nickname" required placeholder="Apelido/Nome Fantasia" [(ngModel)]="customer.nickname">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="address">Endereço</label>
+                    <input type="input" class="form-control" id="address" required placeholder="Endereço" [(ngModel)]="customer.address">
+                </div>
             </div>
             <div class="form-group">
-                <input type="input" class="form-control" id="nickname" required placeholder="Apelido/Nome Fantasia" [(ngModel)]="customer.nickname">
+                <label for="number">Número</label>
+                <input type="input" class="form-control" id="number" required placeholder="Número" [(ngModel)]="customer.number">
             </div>
-            <button type="button" class="btn btn-default" (click)="onButtonOkClick()">OK</button>    
+
+            <button type="submit" class="btn btn-default" >Gravar</button>    
         </form>
     </div>
 </div> 
+    
     

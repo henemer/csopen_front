@@ -25,6 +25,9 @@ System.register(['angular2/core', './customer/customer.component', 'angular2/rou
             AppComponent = (function () {
                 function AppComponent() {
                 }
+                AppComponent.prototype.onSelectVideo = function (video) {
+                    console.log(JSON.stringify(video));
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',

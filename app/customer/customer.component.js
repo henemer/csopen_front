@@ -31,13 +31,20 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
             CustomerComponent = (function () {
                 function CustomerComponent(customerService) {
                     var _this = this;
+                    this.customerService = customerService;
                     customerService.getCustomers()
                         .subscribe(function (customers) { return _this.customers = customers; });
                 }
                 CustomerComponent.prototype.newCustomer = function () {
-                    var c = new model_1.Customer(); //0,1,'emer','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r');
+                    var c = new model_1.Customer();
+                    this.customerService.getNextCode(c);
                     this.selectedCustomer = c;
-                    console.log(c);
+                };
+                CustomerComponent.prototype.onSaveCustomer = function (customer) {
+                    console.log(customer);
+                };
+                CustomerComponent.prototype.onSelectCustomer = function (customer) {
+                    this.selectedCustomer = customer;
                 };
                 CustomerComponent = __decorate([
                     core_1.Component({
