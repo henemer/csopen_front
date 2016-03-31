@@ -36,6 +36,11 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
                         .post(service_1.Config.BASE_URL + 'customer/', JSON.stringify(c))
                         .map(function (res) { return res.json(); });
                 };
+                CustomerService.prototype.update = function (c) {
+                    return this.http
+                        .put(service_1.Config.BASE_URL + 'customer/' + c.id, JSON.stringify(c))
+                        .map(function (res) { return res.json(); });
+                };
                 CustomerService.prototype.getNextCode = function (c) {
                     return this.http
                         .get(service_1.Config.BASE_URL + 'customer/nextcode').subscribe(function (response) { return c.code = parseInt(response.text()); });

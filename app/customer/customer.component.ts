@@ -37,4 +37,8 @@ export class CustomerComponent{
     onCloseForm() {
         this.selectedCustomer = null;
     }    
+    
+    onClickHeader(field) {
+        console.log(field);
+    }
  }

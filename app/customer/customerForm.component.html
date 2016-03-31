@@ -1,34 +1,100 @@
+
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-primary ">
-            <div class="panel-heading">Clientes</div>
+            <div class="panel-heading">Clientes - {{ customer.id }} </div>
             <div class="panel-body">
                 <form (ngSubmit)="onButtonGravarClick(f)" #f>
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label for="codigo">Código</label>
-                            <input type="input" class="form-control" id="codigo" required placeholder="Código" [(ngModel)]="customer.code">
+                            <input type="number" class="form-control" maxLength="8" id="codigo" required placeholder="Código" [(ngModel)]="customer.code">
                         </div>
                         
                         <div class="form-group col-md-9">
                             <label for="nome">Nome/Razão Social</label>
-                            <input type="input" class="form-control" id="name" required placeholder="Nome/Razão Social" [(ngModel)]="customer.name">
+                            <input type="input" class="form-control" maxLength="50" id="name" required placeholder="Nome/Razão Social" [(ngModel)]="customer.name">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="nickname">Apelido/Nome Fantasia</label>
-                            <input type="input" class="form-control" id="nickname" required placeholder="Apelido/Nome Fantasia" [(ngModel)]="customer.nickname">
+                            <input type="input" class="form-control" id="nickname" maxLength="50" placeholder="Apelido/Nome Fantasia" [(ngModel)]="customer.nickname">
                         </div>
-                        <div class="form-group col-md-6">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="cpf">CPF/CNPJ</label>
+                            <input type="input" class="form-control" id="cpf" maxLength="18" placeholder="CPF/CNPJ" [(ngModel)]="customer.cpf">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="rg">RG/Insc.Estadual</label>
+                            <input type="input" class="form-control" id="rg" maxLength="20" placeholder="RG/Insc.Estadual" [(ngModel)]="customer.rg">
+                        </div>
+                        <div class="form-group col-md-4">
                             <label for="address">Endereço</label>
-                            <input type="input" class="form-control" id="address" required placeholder="Endereço" [(ngModel)]="customer.address">
+                            <input type="input" class="form-control" id="address" maxLength="40" placeholder="Endereço" [(ngModel)]="customer.address">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="number">Número</label>
-                        <input type="input" class="form-control" id="number" required placeholder="Número" [(ngModel)]="customer.number">
+
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="number">Número</label>
+                            <input type="input" class="form-control" id="number" maxlength="10" placeholder="Número" [(ngModel)]="customer.number">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="number">Complemento</label>
+                            <input type="input" class="form-control" id="complement" maxlength="30" placeholder="Complemento" [(ngModel)]="customer.complement">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="number">Bairro</label>
+                            <input type="input" class="form-control" id="district" maxlength="30" placeholder="Bairro" [(ngModel)]="customer.district">
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="number">Cidade</label>
+                            <input type="input" class="form-control" id="city" maxlength="30" placeholder="Cidade" [(ngModel)]="customer.city">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="state">Estado</label>
+                            <input type="input" class="form-control" id="state" maxlength="2" placeholder="Estado" [(ngModel)]="customer.state">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="zipcode">CEP</label>
+                            <input type="input" class="form-control" id="zipcode" maxlength="10" placeholder="CEP" [(ngModel)]="customer.zipcode">
+                        </div>
+                    </div>
+                   <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="phone1">Telefone 1</label>
+                            <input type="input" class="form-control" id="phone1" maxlength="16" placeholder="Telefone 1" [(ngModel)]="customer.phone1">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="phone2">Telefone 2</label>
+                            <input type="input" class="form-control" id="phone2" maxlength="16" placeholder="Telefone 2" [(ngModel)]="customer.phone2">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="phone3">CEP</label>
+                            <input type="input" class="form-control" id="phone3" maxlength="16" placeholder="Telefone 3" [(ngModel)]="customer.phone3">
+                        </div>
+                    </div>
+                   <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="contact">Contato</label>
+                            <input type="input" class="form-control" id="contact" maxlength="30" placeholder="Contato" [(ngModel)]="customer.contact">
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="email">Email</label>
+                            <input type="input" class="form-control" id="email" maxlength="80" placeholder="Email" [(ngModel)]="customer.email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="observation">Observações</label>
+                            <textarea rows="4" class="form-control" id="observation" placeholder="Observações" [(ngModel)]="customer.observations"></textarea>
+                        </div>
+                     </div>
 
                     <button type="submit" class="btn btn-primary" >Gravar</button>    
                     <button type="button" class="btn btn-primary" (click)="closeFormCustomer(Event)" >Voltar</button>
@@ -37,5 +103,4 @@
         </div>
     </div>
 </div> 
-    
-    
+

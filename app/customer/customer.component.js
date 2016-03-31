@@ -46,6 +46,9 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                 CustomerComponent.prototype.onCloseForm = function () {
                     this.selectedCustomer = null;
                 };
+                CustomerComponent.prototype.onClickHeader = function (field) {
+                    console.log(field);
+                };
                 CustomerComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',

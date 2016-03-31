@@ -17,6 +17,12 @@ export class CustomerService {
             .post(Config.BASE_URL+'customer/', JSON.stringify(c))
             .map(res => res.json());
     }
+   public update(c:Customer){
+       return this.http
+            .put(Config.BASE_URL+'customer/' + c.id, JSON.stringify(c))
+            .map(res => res.json());
+    }
+  
     public getNextCode(c:Customer) {
         return this.http
             .get(Config.BASE_URL+'customer/nextcode').subscribe(response => c.code = parseInt(response.text()));

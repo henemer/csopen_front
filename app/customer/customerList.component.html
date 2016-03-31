@@ -1,13 +1,15 @@
-<table class="table table-hover  table-striped">
+<table class="table table-bordered table-hover  table-striped">
     <thead>
         <tr>
-            <th>Código</th>
+            <th>Ações</th>
+            <th (click)="onClickHeader('codigo')">Código</th>
             <th>Nome/Razão Social/Nome</th>
             <th>Apelido/Nome Fantasia</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="#c of customers" (click)="onSelect(c)">
+        <tr *ngFor="#c of customers">
+            <td><a (click)="onSelect(c)">Alterar</a> | <a (click)="onDelete(c)">Excluir</a> | <a (click)="onSelect(c)">Consultar</a></td>
             <td>{{c.code}}</td>
             <td>{{c.name}}</td>
             <td>{{c.nickname}}</td>

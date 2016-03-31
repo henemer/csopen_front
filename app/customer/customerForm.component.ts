@@ -16,10 +16,21 @@ export class CustomerFormComponent{
     constructor(private customerService:CustomerService) {}
     
     onButtonGravarClick(event) {
-        this.customerService.insert(this.customer).subscribe(
-            result => console.log('ok'),
-            error => console.log(error)
+        if(this.customer.id > 0) {
+            this.customerService.update(this.customer).subscribe(
+                result => console.log('ok'),
+                error => console.log('erro')
         );        
+            
+        }
+        else
+        {
+            this.customerService.insert(this.customer).subscribe(
+                result => console.log('ok'),
+                error => console.log(error)
+            );        
+            
+        }
   
     }
     

@@ -29,7 +29,12 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1)
                     this.closeForm = new core_1.EventEmitter();
                 }
                 CustomerFormComponent.prototype.onButtonGravarClick = function (event) {
-                    this.customerService.insert(this.customer).subscribe(function (result) { return console.log('ok'); }, function (error) { return console.log(error); });
+                    if (this.customer.id > 0) {
+                        this.customerService.update(this.customer).subscribe(function (result) { return console.log('ok'); }, function (error) { return console.log('erro'); });
+                    }
+                    else {
+                        this.customerService.insert(this.customer).subscribe(function (result) { return console.log('ok'); }, function (error) { return console.log(error); });
+                    }
                 };
                 CustomerFormComponent.prototype.closeFormCustomer = function (Event) {
                     this.closeForm.next({});

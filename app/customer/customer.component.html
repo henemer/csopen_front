@@ -1,4 +1,5 @@
 <button *ngIf="!selectedCustomer" type="button" class="btn btn-primary" (click)="newCustomer()">Novo Cliente</button>
+<p></p>
 
  <customer-form  *ngIf="selectedCustomer"
     [selectedCustomer]="selectedCustomer"
@@ -11,7 +12,8 @@
  <customer-list *ngIf="!selectedCustomer" 
     [customers]="customers" 
     (selectCustomer)="onSelectCustomer($event)" 
-    (saveCustomer)="onSaveCustomer($event)">
+    (saveCustomer)="onSaveCustomer($event)"
+    (clickHeader)="onClickHeader($event)">
 </customer-list>
 
 

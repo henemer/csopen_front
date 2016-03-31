@@ -19,16 +19,20 @@ System.register(['angular2/core'], function(exports_1) {
             CustomerListComponent = (function () {
                 function CustomerListComponent() {
                     this.selectCustomer = new core_1.EventEmitter();
+                    this.clickHeader = new core_1.EventEmitter();
                 }
                 CustomerListComponent.prototype.onSelect = function (sup) {
                     this.selectCustomer.next(sup);
+                };
+                CustomerListComponent.prototype.onClickHeader = function (field) {
+                    this.clickHeader.next(field);
                 };
                 CustomerListComponent = __decorate([
                     core_1.Component({
                         selector: 'customer-list',
                         templateUrl: 'app/customer/customerList.component.html',
                         inputs: ['customers'],
-                        outputs: ['selectCustomer']
+                        outputs: ['selectCustomer', 'clickHeader']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], CustomerListComponent);
