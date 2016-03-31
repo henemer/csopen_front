@@ -18,15 +18,15 @@ export class CustomerFormComponent{
     onButtonGravarClick(event) {
         if(this.customer.id > 0) {
             this.customerService.update(this.customer).subscribe(
-                result => console.log('ok'),
+                result => this.closeFormCustomer(event),
                 error => console.log('erro')
-        );        
+            );        
             
         }
         else
         {
             this.customerService.insert(this.customer).subscribe(
-                result => console.log('ok'),
+                result => this.newCustomer(),
                 error => console.log(error)
             );        
             
@@ -34,6 +34,11 @@ export class CustomerFormComponent{
   
     }
     
+    newCustomer() {
+        this.customer = new Customer();
+        this.customerService.getNextCode(this.customer);
+          
+    }   
     
     closeFormCustomer(Event) {
         this.closeForm.next({});
