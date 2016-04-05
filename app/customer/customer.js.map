@@ -1,1 +1,1 @@
-{"version":3,"file":"customer.js","sourceRoot":"","sources":["customer.ts"],"names":["Customer","Customer.constructor"],"mappings":";;;;;YAAA;gBAAAA;gBAmBAC,CAACA;gBAADD,eAACA;YAADA,CAACA,AAnBD,IAmBC;YAnBD,+BAmBC,CAAA"}
+{"version":3,"file":"customer.js","sourceRoot":"","sources":["customer.ts"],"names":[],"mappings":";;;;;;;YAAA;gBAAA;gBAmBA,CAAC;gBAAD,eAAC;YAAD,CAAC,AAnBD,IAmBC;YAnBD,+BAmBC,CAAA"}

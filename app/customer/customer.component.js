@@ -1,4 +1,6 @@
-System.register(['angular2/core', '../model', '../service', '../customer/customerList.component', '../customer/customerForm.component'], function(exports_1) {
+System.register(['angular2/core', '../model', '../service', '../customer/customerList.component', '../customer/customerForm.component', '../customer/customerDelete.component'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +10,7 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, model_1, service_1, customerList_component_1, customerForm_component_1;
+    var core_1, model_1, service_1, customerList_component_1, customerForm_component_1, customerDelete_component_1;
     var CustomerComponent;
     return {
         setters:[
@@ -26,6 +28,9 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
             },
             function (customerForm_component_1_1) {
                 customerForm_component_1 = customerForm_component_1_1;
+            },
+            function (customerDelete_component_1_1) {
+                customerDelete_component_1 = customerDelete_component_1_1;
             }],
         execute: function() {
             CustomerComponent = (function () {
@@ -43,23 +48,32 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                 CustomerComponent.prototype.onSelectCustomer = function (customer) {
                     this.selectedCustomer = customer;
                 };
+                CustomerComponent.prototype.onDeleteCustomer = function (customer) {
+                    this.deleteSelectedCustomer = customer;
+                };
                 CustomerComponent.prototype.onCloseForm = function () {
                     this.selectedCustomer = null;
                 };
                 CustomerComponent.prototype.onClickHeader = function (field) {
                     console.log(field);
                 };
+                CustomerComponent.prototype.onCloseDelete = function () {
+                    var _this = this;
+                    this.deleteSelectedCustomer = null;
+                    this.customerService.getCustomers()
+                        .subscribe(function (customers) { return _this.customers = customers; });
+                };
                 CustomerComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
                         providers: [service_1.CustomerService],
                         templateUrl: '/app/customer/customer.component.html',
-                        directives: [customerList_component_1.CustomerListComponent, customerForm_component_1.CustomerFormComponent]
+                        directives: [customerList_component_1.CustomerListComponent, customerForm_component_1.CustomerFormComponent, customerDelete_component_1.CustomerDeleteComponent]
                     }), 
                     __metadata('design:paramtypes', [service_1.CustomerService])
                 ], CustomerComponent);
                 return CustomerComponent;
-            })();
+            }());
             exports_1("CustomerComponent", CustomerComponent);
         }
     }

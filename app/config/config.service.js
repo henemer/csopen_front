@@ -1,4 +1,6 @@
-System.register([], function(exports_1) {
+System.register([], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var Config;
     return {
         setters:[],
@@ -8,7 +10,7 @@ System.register([], function(exports_1) {
                 }
                 Config.BASE_URL = "http://127.0.0.1:8000/";
                 return Config;
-            })();
+            }());
             exports_1("Config", Config);
         }
     }

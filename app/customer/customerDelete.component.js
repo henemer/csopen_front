@@ -11,7 +11,7 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, model_1, service_1;
-    var CustomerFormComponent;
+    var CustomerDeleteComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -24,42 +24,34 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
                 service_1 = service_1_1;
             }],
         execute: function() {
-            CustomerFormComponent = (function () {
-                function CustomerFormComponent(customerService) {
+            CustomerDeleteComponent = (function () {
+                function CustomerDeleteComponent(customerService) {
                     this.customerService = customerService;
                     this.customer = new model_1.Customer();
-                    this.closeForm = new core_1.EventEmitter();
+                    this.closeDelete = new core_1.EventEmitter();
+                    this.deleteCustomer = new core_1.EventEmitter();
                 }
-                CustomerFormComponent.prototype.onButtonGravarClick = function (event) {
+                CustomerDeleteComponent.prototype.clickDeleteCustomer = function (id) {
                     var _this = this;
-                    if (this.customer.id > 0) {
-                        this.customerService.update(this.customer).subscribe(function (result) { return _this.closeFormCustomer(event); }, function (error) { return console.log('erro'); });
-                    }
-                    else {
-                        this.customerService.insert(this.customer).subscribe(function (result) { return _this.newCustomer(); }, function (error) { return console.log(error); });
-                    }
+                    this.customerService.delete(id).subscribe(function (result) { return _this.closeDeleteCustomer(_this.closeDelete); }, function (error) { return console.log('erro'); });
                 };
-                CustomerFormComponent.prototype.newCustomer = function () {
-                    this.customer = new model_1.Customer();
-                    this.customerService.getNextCode(this.customer);
+                CustomerDeleteComponent.prototype.closeDeleteCustomer = function (Event) {
+                    this.closeDelete.next({});
                 };
-                CustomerFormComponent.prototype.closeFormCustomer = function (Event) {
-                    this.closeForm.next({});
-                };
-                CustomerFormComponent = __decorate([
+                CustomerDeleteComponent = __decorate([
                     core_1.Component({
-                        selector: 'customer-form',
-                        templateUrl: 'app/customer/customerForm.component.html',
-                        inputs: ['customer', 'selectedCustomer'],
-                        outputs: ['closeForm'],
+                        selector: 'customer-delete',
+                        templateUrl: 'app/customer/customerDelete.component.html',
+                        inputs: ['c'],
+                        outputs: ['closeDelete', 'deleteCustomer'],
                         providers: [service_1.CustomerService]
                     }), 
                     __metadata('design:paramtypes', [service_1.CustomerService])
-                ], CustomerFormComponent);
-                return CustomerFormComponent;
+                ], CustomerDeleteComponent);
+                return CustomerDeleteComponent;
             }());
-            exports_1("CustomerFormComponent", CustomerFormComponent);
+            exports_1("CustomerDeleteComponent", CustomerDeleteComponent);
         }
     }
 });
-//# sourceMappingURL=customerForm.component.js.map
+//# sourceMappingURL=customerDelete.component.js.map

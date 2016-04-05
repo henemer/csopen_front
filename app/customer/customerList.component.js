@@ -1,4 +1,6 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,6 +21,7 @@ System.register(['angular2/core'], function(exports_1) {
             CustomerListComponent = (function () {
                 function CustomerListComponent() {
                     this.selectCustomer = new core_1.EventEmitter();
+                    this.deleteSelectCustomer = new core_1.EventEmitter();
                     this.clickHeader = new core_1.EventEmitter();
                 }
                 CustomerListComponent.prototype.onSelect = function (sup) {
@@ -27,17 +30,20 @@ System.register(['angular2/core'], function(exports_1) {
                 CustomerListComponent.prototype.onClickHeader = function (field) {
                     this.clickHeader.next(field);
                 };
+                CustomerListComponent.prototype.onDelete = function (sup) {
+                    this.deleteSelectCustomer.next(sup);
+                };
                 CustomerListComponent = __decorate([
                     core_1.Component({
                         selector: 'customer-list',
                         templateUrl: 'app/customer/customerList.component.html',
                         inputs: ['customers'],
-                        outputs: ['selectCustomer', 'clickHeader']
+                        outputs: ['selectCustomer', 'clickHeader', 'deleteSelectCustomer']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], CustomerListComponent);
                 return CustomerListComponent;
-            })();
+            }());
             exports_1("CustomerListComponent", CustomerListComponent);
         }
     }

@@ -1,7 +1,7 @@
-<button *ngIf="!selectedCustomer" type="button" class="btn btn-primary" (click)="newCustomer()">Novo Cliente</button>
+<button *ngIf="!selectedCustomer && !deleteSelectedCustomer" type="button" class="btn btn-primary" (click)="newCustomer()">Novo Cliente</button>
 <p></p>
 
- <customer-form  *ngIf="selectedCustomer"
+ <customer-form  *ngIf="selectedCustomer && !deleteSelectedCustomer"
     [selectedCustomer]="selectedCustomer"
     [customer]="selectedCustomer" 
     (saveCustomer)="onSaveCustomer($event)"
@@ -9,12 +9,18 @@
 </customer-form>
 
 
- <customer-list *ngIf="!selectedCustomer" 
+ <customer-list *ngIf="!selectedCustomer && !deleteSelectedCustomer" 
     [customers]="customers" 
     (selectCustomer)="onSelectCustomer($event)" 
     (saveCustomer)="onSaveCustomer($event)"
+    (deleteSelectCustomer)="onDeleteCustomer($event)"
     (clickHeader)="onClickHeader($event)">
 </customer-list>
 
 
+ <customer-delete *ngIf="deleteSelectedCustomer" 
+    [c]="deleteSelectedCustomer"
+    (deleteCustomer)="onClickDeleteCustomer($event)"
+    (closeDelete)="onCloseDelete($event)">
+</customer-delete>
  

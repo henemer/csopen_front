@@ -27,5 +27,12 @@ export class CustomerService {
         return this.http
             .get(Config.BASE_URL+'customer/nextcode').subscribe(response => c.code = parseInt(response.text()));
             
-    }    
+    }
+    
+   public delete(id){
+       return this.http
+            .delete(Config.BASE_URL+'customer/' + id)
+            .map(res => res.json());
+    }
+        
 }

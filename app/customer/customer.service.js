@@ -1,4 +1,6 @@
-System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../service'], function(exports_1) {
+System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../service'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,12 +47,17 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
                     return this.http
                         .get(service_1.Config.BASE_URL + 'customer/nextcode').subscribe(function (response) { return c.code = parseInt(response.text()); });
                 };
+                CustomerService.prototype.delete = function (id) {
+                    return this.http
+                        .delete(service_1.Config.BASE_URL + 'customer/' + id)
+                        .map(function (res) { return res.json(); });
+                };
                 CustomerService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
                 ], CustomerService);
                 return CustomerService;
-            })();
+            }());
             exports_1("CustomerService", CustomerService);
         }
     }
