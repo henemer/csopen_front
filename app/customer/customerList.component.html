@@ -9,7 +9,7 @@
     </thead>
     <tbody>
         <tr *ngFor="#c of customers">
-            <td><a (click)="onSelect(c)">Alterar</a> | <a (click)="onDelete(c)">Excluir</a> | <a (click)="onSelect(c)">Consultar</a></td>
+            <td><a (click)="onSelect(c)">Alterar</a> | <a (click)="onDelete(c)">Excluir</a> | <a (click)="onShow(c)">Consultar</a></td>
             <td>{{c.code}}</td>
             <td>{{c.name}}</td>
             <td>{{c.nickname}}</td>

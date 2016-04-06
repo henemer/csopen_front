@@ -22,6 +22,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function CustomerListComponent() {
                     this.selectCustomer = new core_1.EventEmitter();
                     this.deleteSelectCustomer = new core_1.EventEmitter();
+                    this.showSelectCustomer = new core_1.EventEmitter();
                     this.clickHeader = new core_1.EventEmitter();
                 }
                 CustomerListComponent.prototype.onSelect = function (sup) {
@@ -33,12 +34,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 CustomerListComponent.prototype.onDelete = function (sup) {
                     this.deleteSelectCustomer.next(sup);
                 };
+                CustomerListComponent.prototype.onShow = function (sup) {
+                    this.showSelectCustomer.next(sup);
+                };
                 CustomerListComponent = __decorate([
                     core_1.Component({
                         selector: 'customer-list',
                         templateUrl: 'app/customer/customerList.component.html',
                         inputs: ['customers'],
-                        outputs: ['selectCustomer', 'clickHeader', 'deleteSelectCustomer']
+                        outputs: ['selectCustomer', 'clickHeader', 'deleteSelectCustomer', 'showSelectCustomer']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], CustomerListComponent);

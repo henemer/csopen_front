@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../model', '../service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../model', '../service', '../customer/customerData.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, model_1, service_1;
+    var core_1, model_1, service_1, customerData_component_1;
     var CustomerDeleteComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
             },
             function (service_1_1) {
                 service_1 = service_1_1;
+            },
+            function (customerData_component_1_1) {
+                customerData_component_1 = customerData_component_1_1;
             }],
         execute: function() {
             CustomerDeleteComponent = (function () {
@@ -44,7 +47,8 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
                         templateUrl: 'app/customer/customerDelete.component.html',
                         inputs: ['c'],
                         outputs: ['closeDelete', 'deleteCustomer'],
-                        providers: [service_1.CustomerService]
+                        providers: [service_1.CustomerService],
+                        directives: [customerData_component_1.CustomerDataComponent]
                     }), 
                     __metadata('design:paramtypes', [service_1.CustomerService])
                 ], CustomerDeleteComponent);

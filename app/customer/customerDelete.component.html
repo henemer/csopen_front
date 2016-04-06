@@ -1,6 +1,8 @@
 <h1>Confirma a Exclusão desse Cliente ?</h1>
-<p><span>Código:</span>{{ c.code }}</p>
-<p><span>Nome:</span>{{c.name}} </p>
+
+<customer-data [c]="c" >
+</customer-data>
+ 
 
 
 <button type="button" class="btn btn-danger" (click)="clickDeleteCustomer(c.id)">Excluir</button>    

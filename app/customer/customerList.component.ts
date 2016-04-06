@@ -5,11 +5,12 @@ import {Customer} from '../model'
     selector: 'customer-list',
     templateUrl: 'app/customer/customerList.component.html',
     inputs:['customers'],
-    outputs:['selectCustomer', 'clickHeader', 'deleteSelectCustomer']
+    outputs:['selectCustomer', 'clickHeader', 'deleteSelectCustomer','showSelectCustomer']
 })
 export class CustomerListComponent {
     selectCustomer = new EventEmitter();
     deleteSelectCustomer = new EventEmitter();
+    showSelectCustomer = new EventEmitter();
     clickHeader = new EventEmitter();
     
     onSelect(sup:Customer) {
@@ -23,4 +24,9 @@ export class CustomerListComponent {
     onDelete(sup:Customer) {
         this.deleteSelectCustomer.next(sup);
     }    
+    
+    onShow(sup:Customer) {
+        this.showSelectCustomer.next(sup);
+    }
+    
 }

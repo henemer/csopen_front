@@ -33,6 +33,10 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
                     return this.http.get(service_1.Config.BASE_URL + 'customer/')
                         .map(function (res) { return res.json(); });
                 };
+                CustomerService.prototype.show = function (id) {
+                    return this.http.get(service_1.Config.BASE_URL + 'customer/' + id)
+                        .map(function (res) { return res.json(); });
+                };
                 CustomerService.prototype.insert = function (c) {
                     return this.http
                         .post(service_1.Config.BASE_URL + 'customer/', JSON.stringify(c))

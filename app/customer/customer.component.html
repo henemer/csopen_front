@@ -1,7 +1,7 @@
-<button *ngIf="!selectedCustomer && !deleteSelectedCustomer" type="button" class="btn btn-primary" (click)="newCustomer()">Novo Cliente</button>
+<button *ngIf="operation=='list'" type="button" class="btn btn-primary" (click)="newCustomer()">Novo Cliente</button>
 <p></p>
 
- <customer-form  *ngIf="selectedCustomer && !deleteSelectedCustomer"
+ <customer-form  *ngIf="selectedCustomer && operation=='update'"
     [selectedCustomer]="selectedCustomer"
     [customer]="selectedCustomer" 
     (saveCustomer)="onSaveCustomer($event)"
@@ -9,18 +9,23 @@
 </customer-form>
 
 
- <customer-list *ngIf="!selectedCustomer && !deleteSelectedCustomer" 
+ <customer-list *ngIf="operation=='list'" 
     [customers]="customers" 
     (selectCustomer)="onSelectCustomer($event)" 
     (saveCustomer)="onSaveCustomer($event)"
     (deleteSelectCustomer)="onDeleteCustomer($event)"
+    (showSelectCustomer)="onShowCustomer($event)"
     (clickHeader)="onClickHeader($event)">
 </customer-list>
 
 
- <customer-delete *ngIf="deleteSelectedCustomer" 
+ <customer-delete *ngIf="operation=='delete'" 
     [c]="deleteSelectedCustomer"
     (deleteCustomer)="onClickDeleteCustomer($event)"
     (closeDelete)="onCloseDelete($event)">
 </customer-delete>
  
+ <customer-show *ngIf="operation=='show'" 
+    [c]="selectedCustomer"
+    (closeShow)="onCloseShow($event)">
+</customer-show>

@@ -1,13 +1,16 @@
 import {Component, EventEmitter} from 'angular2/core'
 import {Customer} from '../model'
 import {CustomerService} from '../service'
+import {CustomerDataComponent} from '../customer/customerData.component'
 
 @Component({
     selector:'customer-delete',
     templateUrl: 'app/customer/customerDelete.component.html',
     inputs:['c'],
     outputs:['closeDelete', 'deleteCustomer'],
-    providers: [CustomerService]
+    providers: [CustomerService],
+    directives: [CustomerDataComponent]
+    
 })
 export class CustomerDeleteComponent{
     private customer:Customer = new Customer();
