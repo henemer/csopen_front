@@ -1,4 +1,5 @@
 import {Component, EventEmitter} from 'angular2/core'
+import {Validators} from 'angular2/common'
 import {Customer} from '../model'
 import {CustomerService} from '../service'
 
@@ -32,6 +33,7 @@ export class CustomerFormComponent{
             
         }
   
+     
     }
     
     newCustomer() {

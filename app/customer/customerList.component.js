@@ -25,6 +25,11 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.showSelectCustomer = new core_1.EventEmitter();
                     this.clickHeader = new core_1.EventEmitter();
                 }
+                // customerService:CustomerService;
+                // customers:Customer;  
+                // constructor(customerService:CustomerService) {
+                // this.customerService = customerService;
+                //  }
                 CustomerListComponent.prototype.onSelect = function (sup) {
                     this.selectCustomer.next(sup);
                 };
@@ -36,6 +41,14 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 CustomerListComponent.prototype.onShow = function (sup) {
                     this.showSelectCustomer.next(sup);
+                };
+                CustomerListComponent.prototype.onButtonFiltrarClick = function (form) {
+                    // var filtrarPor = form.filtrarPor.value;
+                    // var filtro = form.filtro.value;
+                    // console.log(filtrarPor);
+                    // console.log(filtro);
+                    // this.customerService.getCustomers(filtrarPor, filtro, false)
+                    //     .subscribe(customers => this.customers = customers);
                 };
                 CustomerListComponent = __decorate([
                     core_1.Component({

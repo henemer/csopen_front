@@ -1,7 +1,7 @@
 <button *ngIf="operation=='list'" type="button" class="btn btn-primary" (click)="newCustomer()">Novo Cliente</button>
 <p></p>
 
- <customer-form  *ngIf="selectedCustomer && operation=='update'"
+ <customer-form  *ngIf="(selectedCustomer && operation=='update') || operation=='new'"
     [selectedCustomer]="selectedCustomer"
     [customer]="selectedCustomer" 
     (saveCustomer)="onSaveCustomer($event)"

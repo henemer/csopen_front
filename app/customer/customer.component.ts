@@ -24,7 +24,7 @@ export class CustomerComponent{
     constructor(customerService:CustomerService) {
         this.operation = 'list';
         this.customerService = customerService;
-        customerService.getCustomers()
+        customerService.getCustomers('name','', true)
             .subscribe(customers => this.customers = customers);
             
     }
@@ -34,6 +34,7 @@ export class CustomerComponent{
         this.customerService.getNextCode(c);
         this.selectedCustomer = c;
         this.operation = 'new';
+       
     }   
     
     
@@ -60,7 +61,7 @@ export class CustomerComponent{
     onCloseDelete() {
         this.deleteSelectedCustomer = null;
         this.operation = 'list';
-        this.customerService.getCustomers()
+        this.customerService.getCustomers('name','',true)
             .subscribe(customers => this.customers = customers);        
     }
     

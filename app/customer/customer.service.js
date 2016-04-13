@@ -28,32 +28,34 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
             CustomerService = (function () {
                 function CustomerService(http) {
                     this.http = http;
+                    this.headers = new http_1.Headers(); //*******
+                    this.headers.append('Content-Type', 'application/json'); //******
                 }
-                CustomerService.prototype.getCustomers = function () {
-                    return this.http.get(service_1.Config.BASE_URL + 'customer/')
+                CustomerService.prototype.getCustomers = function (filterBy, filter, all) {
+                    return this.http.get(service_1.Config.BASE_URL + '/clientes/')
                         .map(function (res) { return res.json(); });
                 };
                 CustomerService.prototype.show = function (id) {
-                    return this.http.get(service_1.Config.BASE_URL + 'customer/' + id)
+                    return this.http.get(service_1.Config.BASE_URL + '/clientes/' + id)
                         .map(function (res) { return res.json(); });
                 };
                 CustomerService.prototype.insert = function (c) {
                     return this.http
-                        .post(service_1.Config.BASE_URL + 'customer/', JSON.stringify(c))
+                        .post(service_1.Config.BASE_URL + '/clientes/', JSON.stringify(c), { headers: this.headers })
                         .map(function (res) { return res.json(); });
                 };
                 CustomerService.prototype.update = function (c) {
                     return this.http
-                        .put(service_1.Config.BASE_URL + 'customer/' + c.id, JSON.stringify(c))
+                        .put(service_1.Config.BASE_URL + '/clientes/' + c.id, JSON.stringify(c), { headers: this.headers })
                         .map(function (res) { return res.json(); });
                 };
                 CustomerService.prototype.getNextCode = function (c) {
                     return this.http
-                        .get(service_1.Config.BASE_URL + 'customer/nextcode').subscribe(function (response) { return c.code = parseInt(response.text()); });
+                        .get(service_1.Config.BASE_URL + '/customer/nextcode').subscribe(function (response) { return c.code = parseInt(response.text()); });
                 };
                 CustomerService.prototype.delete = function (id) {
                     return this.http
-                        .delete(service_1.Config.BASE_URL + 'customer/' + id)
+                        .delete(service_1.Config.BASE_URL + '/clientes/' + id)
                         .map(function (res) { return res.json(); });
                 };
                 CustomerService = __decorate([

@@ -41,7 +41,7 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                     var _this = this;
                     this.operation = 'list';
                     this.customerService = customerService;
-                    customerService.getCustomers()
+                    customerService.getCustomers('name', '', true)
                         .subscribe(function (customers) { return _this.customers = customers; });
                 }
                 CustomerComponent.prototype.newCustomer = function () {
@@ -69,7 +69,7 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                     var _this = this;
                     this.deleteSelectedCustomer = null;
                     this.operation = 'list';
-                    this.customerService.getCustomers()
+                    this.customerService.getCustomers('name', '', true)
                         .subscribe(function (customers) { return _this.customers = customers; });
                 };
                 CustomerComponent.prototype.onShowCustomer = function (customer) {
