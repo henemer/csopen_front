@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', '../service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,26 +10,25 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, service_1;
     var CustomerListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (service_1_1) {
+                service_1 = service_1_1;
             }],
         execute: function() {
             CustomerListComponent = (function () {
-                function CustomerListComponent() {
+                function CustomerListComponent(customerService) {
                     this.selectCustomer = new core_1.EventEmitter();
                     this.deleteSelectCustomer = new core_1.EventEmitter();
                     this.showSelectCustomer = new core_1.EventEmitter();
                     this.clickHeader = new core_1.EventEmitter();
+                    this.customerService = customerService;
                 }
-                // customerService:CustomerService;
-                // customers:Customer;  
-                // constructor(customerService:CustomerService) {
-                // this.customerService = customerService;
-                //  }
                 CustomerListComponent.prototype.onSelect = function (sup) {
                     this.selectCustomer.next(sup);
                 };
@@ -42,13 +41,19 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 CustomerListComponent.prototype.onShow = function (sup) {
                     this.showSelectCustomer.next(sup);
                 };
-                CustomerListComponent.prototype.onButtonFiltrarClick = function (form) {
-                    // var filtrarPor = form.filtrarPor.value;
-                    // var filtro = form.filtro.value;
-                    // console.log(filtrarPor);
-                    // console.log(filtro);
-                    // this.customerService.getCustomers(filtrarPor, filtro, false)
-                    //     .subscribe(customers => this.customers = customers);
+                CustomerListComponent.prototype.onButtonFilterClick = function (form, all) {
+                    var _this = this;
+                    console.log(all);
+                    var filterBy = form.filterBy.value;
+                    var filter = form.filter.value;
+                    this.customerService.getCustomers(filterBy, filter, false)
+                        .subscribe(function (customers) { return _this.customers = customers; });
+                };
+                CustomerListComponent.prototype.onButtonFilterAllClick = function () {
+                    var _this = this;
+                    console.log('aqui O');
+                    this.customerService.getCustomers('', '', true)
+                        .subscribe(function (customers) { return _this.customers = customers; });
                 };
                 CustomerListComponent = __decorate([
                     core_1.Component({
@@ -57,7 +62,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         inputs: ['customers'],
                         outputs: ['selectCustomer', 'clickHeader', 'deleteSelectCustomer', 'showSelectCustomer']
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [service_1.CustomerService])
                 ], CustomerListComponent);
                 return CustomerListComponent;
             }());

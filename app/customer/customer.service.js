@@ -28,11 +28,15 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
             CustomerService = (function () {
                 function CustomerService(http) {
                     this.http = http;
-                    this.headers = new http_1.Headers(); //*******
-                    this.headers.append('Content-Type', 'application/json'); //******
+                    this.headers = new http_1.Headers();
+                    this.headers.append('Content-Type', 'application/json');
                 }
                 CustomerService.prototype.getCustomers = function (filterBy, filter, all) {
-                    return this.http.get(service_1.Config.BASE_URL + '/clientes/')
+                    if (all == true) {
+                        filterBy = '';
+                        filter = '';
+                    }
+                    return this.http.get(service_1.Config.BASE_URL + '/clientes/' + filterBy + filter)
                         .map(function (res) { return res.json(); });
                 };
                 CustomerService.prototype.show = function (id) {
@@ -49,9 +53,9 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
                         .put(service_1.Config.BASE_URL + '/clientes/' + c.id, JSON.stringify(c), { headers: this.headers })
                         .map(function (res) { return res.json(); });
                 };
-                CustomerService.prototype.getNextCode = function (c) {
+                CustomerService.prototype.getMaxCode = function (c) {
                     return this.http
-                        .get(service_1.Config.BASE_URL + '/customer/nextcode').subscribe(function (response) { return c.code = parseInt(response.text()); });
+                        .get(service_1.Config.BASE_URL + '/clientes/getmaxcode').subscribe(function (response) { return c.code = parseInt(response.text()); });
                 };
                 CustomerService.prototype.delete = function (id) {
                     return this.http

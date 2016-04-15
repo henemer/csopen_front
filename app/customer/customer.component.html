@@ -10,8 +10,8 @@
 
 
  <customer-list *ngIf="operation=='list'" 
-    [customers]="customers" 
-    (selectCustomer)="onSelectCustomer($event)" 
+    [customers]="customers"
+    (selectCustomer)="onSelectCustomer($event)"
     (saveCustomer)="onSaveCustomer($event)"
     (deleteSelectCustomer)="onDeleteCustomer($event)"
     (showSelectCustomer)="onShowCustomer($event)"

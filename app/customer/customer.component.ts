@@ -31,7 +31,7 @@ export class CustomerComponent{
     
    newCustomer() {
         var c:Customer = new Customer();
-        this.customerService.getNextCode(c);
+        this.customerService.getMaxCode(c);
         this.selectedCustomer = c;
         this.operation = 'new';
        

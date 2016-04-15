@@ -46,7 +46,7 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                 }
                 CustomerComponent.prototype.newCustomer = function () {
                     var c = new model_1.Customer();
-                    this.customerService.getNextCode(c);
+                    this.customerService.getMaxCode(c);
                     this.selectedCustomer = c;
                     this.operation = 'new';
                 };

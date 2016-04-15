@@ -14,13 +14,13 @@ export class CustomerListComponent {
     deleteSelectCustomer = new EventEmitter();
     showSelectCustomer = new EventEmitter();
     clickHeader = new EventEmitter();
-    // customerService:CustomerService;
-   // customers:Customer;  
-    
-    // constructor(customerService:CustomerService) {
-        // this.customerService = customerService;
-            
-  //  }
+    customerService:CustomerService;
+    customers:Customer;  
+
+     constructor(customerService:CustomerService) {
+         this.customerService = customerService;
+
+    }
     
     onSelect(sup:Customer) {
         this.selectCustomer.next(sup);
@@ -38,15 +38,19 @@ export class CustomerListComponent {
         this.showSelectCustomer.next(sup);
     }
     
-    onButtonFiltrarClick(form) {
-        // var filtrarPor = form.filtrarPor.value;
-        // var filtro = form.filtro.value;
-        // console.log(filtrarPor);
-        // console.log(filtro);
-        // this.customerService.getCustomers(filtrarPor, filtro, false)
-        //     .subscribe(customers => this.customers = customers);
-        
-        
-       
-    }    
+    onButtonFilterClick(form,all) {
+        console.log(all);
+        var filterBy = form.filterBy.value;
+        var filter = form.filter.value;
+        this.customerService.getCustomers(filterBy, filter, false)
+             .subscribe(customers => this.customers = customers);
+
+    }
+
+    onButtonFilterAllClick() {
+        console.log('aqui O');
+        this.customerService.getCustomers('', '', true)
+            .subscribe(customers => this.customers = customers);
+
+    }
 }

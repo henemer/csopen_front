@@ -38,7 +38,7 @@ export class CustomerFormComponent{
     
     newCustomer() {
         this.customer = new Customer();
-        this.customerService.getNextCode(this.customer);
+        this.customerService.getMaxCode(this.customer);
           
     }   
     

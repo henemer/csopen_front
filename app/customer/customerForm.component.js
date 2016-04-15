@@ -41,7 +41,7 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
                 };
                 CustomerFormComponent.prototype.newCustomer = function () {
                     this.customer = new model_1.Customer();
-                    this.customerService.getNextCode(this.customer);
+                    this.customerService.getMaxCode(this.customer);
                 };
                 CustomerFormComponent.prototype.closeFormCustomer = function (Event) {
                     this.closeForm.next({});
