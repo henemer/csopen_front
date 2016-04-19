@@ -1,8 +1,6 @@
-import {Component, EventEmitter} from 'angular2/core'
-import {Validators} from 'angular2/common'
-import {Customer} from '../model'
-import {CustomerService} from '../service'
-import {Response} from "angular2/http";
+import {Component, EventEmitter} from "angular2/core";
+import {Customer} from "../model";
+import {CustomerService} from "../service";
 
 @Component({
     selector:'customer-form',
@@ -75,7 +73,7 @@ export class CustomerFormComponent{
     blurCode(f) {
         var id = 0
 
-        if (this.customer.code == NaN)
+        if (isNaN(this.customer.code))
         {
             return;
         }

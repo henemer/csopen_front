@@ -2,6 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         "module": "system",
+        "outDir": "dist/app",
         "sourceMap": true,
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,

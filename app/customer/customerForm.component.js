@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../model', '../service'], function(exports_1, context_1) {
+System.register(["angular2/core", "../model", "../service"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -69,7 +69,7 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
                 CustomerFormComponent.prototype.blurCode = function (f) {
                     var _this = this;
                     var id = 0;
-                    if (this.customer.code == NaN) {
+                    if (isNaN(this.customer.code)) {
                         return;
                     }
                     if (typeof this.customer.id !== "undefined") {

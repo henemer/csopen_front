@@ -18,11 +18,11 @@
                 <form *ngIf="active" (ngSubmit)="onButtonGravarClick(f)" #f>
                     <div class="row">
                         <div class="form-group col-md-3">
-                            <label for="codigo">Código</label>
+                            <label for="code">Código</label>
                             <input type="number"
                                    class="form-control {{ testeClass }}"
                                    maxLength="8"
-                                   id="codigo"
+                                   id="code"
                                    required
                                    placeholder="Código"
                                    [(ngModel)]="customer.code"
