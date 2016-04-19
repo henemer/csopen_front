@@ -11,6 +11,7 @@
 
  <customer-list *ngIf="operation=='list'" 
     [customers]="customers"
+    [customerFilter] = "customerFilter"
     (selectCustomer)="onSelectCustomer($event)"
     (saveCustomer)="onSaveCustomer($event)"
     (deleteSelectCustomer)="onDeleteCustomer($event)"
@@ -22,7 +23,7 @@
  <customer-delete *ngIf="operation=='delete'" 
     [c]="deleteSelectedCustomer"
     (deleteCustomer)="onClickDeleteCustomer($event)"
-    (closeDelete)="onCloseDelete($event)">
+    (closeDelete)="onCloseDelete($event)" >
 </customer-delete>
  
  <customer-show *ngIf="operation=='show'" 

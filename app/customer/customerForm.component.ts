@@ -2,6 +2,7 @@ import {Component, EventEmitter} from 'angular2/core'
 import {Validators} from 'angular2/common'
 import {Customer} from '../model'
 import {CustomerService} from '../service'
+import {Response} from "angular2/http";
 
 @Component({
     selector:'customer-form',
@@ -13,22 +14,27 @@ import {CustomerService} from '../service'
 export class CustomerFormComponent{
     private customer:Customer = new Customer();
     private closeForm = new EventEmitter();
-    
+    errorMessage:string;
+    active = true;
+    testeClass = '';
+    messageSuccess = '';
+
     constructor(private customerService:CustomerService) {}
     
     onButtonGravarClick(event) {
+        this.errorMessage = '';
         if(this.customer.id > 0) {
             this.customerService.update(this.customer).subscribe(
                 result => this.closeFormCustomer(event),
-                error => console.log('erro')
-            );        
-            
+                error =>  this.errorMessage = <any>error
+            );
+
         }
         else
         {
             this.customerService.insert(this.customer).subscribe(
                 result => this.newCustomer(),
-                error => console.log(error)
+                error => this.showErrors(error._body)
             );        
             
         }
@@ -37,12 +43,59 @@ export class CustomerFormComponent{
     }
     
     newCustomer() {
+        this.messageSuccess = 'Novo cliente gravado com sucesso !';
         this.customer = new Customer();
         this.customerService.getMaxCode(this.customer);
-          
+        this.active = false;  // desabilita o form e reabilita para restaurar o pristine
+        setTimeout(()=> this.active=true, 0);
+
+        setTimeout(function() {
+            this.messageSuccess = '';
+        }.bind(this), 3000);
+
     }   
     
     closeFormCustomer(Event) {
         this.closeForm.next({});
+    }
+
+    showErrors(errors) {
+        this.errorMessage = '';
+        
+        var teste = JSON.parse(errors);
+
+        for (var i in teste) {
+            if (teste.hasOwnProperty(i)) {
+                this.errorMessage += ' - '+ teste[i] + '<br>';
+            }
+        }
+
+    }
+
+    blurCode(f) {
+        var id = 0
+
+        if (this.customer.code == NaN)
+        {
+            return;
+        }
+
+        if (typeof this.customer.id !== "undefined") {
+            id = this.customer.id;
+        }
+
+        this.customerService.codeExists(id, this.customer.code).subscribe(
+            result => {
+                if(result == true) {
+                    this.errorMessage = 'Código já cadastrado, tente outro.';
+                    f.codigo.error = 'Código já cadastrado';
+                    this.testeClass = 'ng-invalid';
+                }
+                else
+                {
+                    this.errorMessage = '';
+                    this.testeClass = 'form-control';
+                }
+            })
     }
 }

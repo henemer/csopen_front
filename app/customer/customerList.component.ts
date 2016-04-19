@@ -5,7 +5,7 @@ import {CustomerService} from '../service'
 @Component({
     selector: 'customer-list',
     templateUrl: 'app/customer/customerList.component.html',
-    inputs:['customers'],
+    inputs:['customers', 'all', 'customerFilter' ],
     outputs:['selectCustomer', 'clickHeader', 'deleteSelectCustomer','showSelectCustomer']
     
 })
@@ -15,7 +15,8 @@ export class CustomerListComponent {
     showSelectCustomer = new EventEmitter();
     clickHeader = new EventEmitter();
     customerService:CustomerService;
-    customers:Customer;  
+    customers:Customer;
+
 
      constructor(customerService:CustomerService) {
          this.customerService = customerService;
@@ -38,18 +39,18 @@ export class CustomerListComponent {
         this.showSelectCustomer.next(sup);
     }
     
-    onButtonFilterClick(form,all) {
-        console.log(all);
-        var filterBy = form.filterBy.value;
-        var filter = form.filter.value;
-        this.customerService.getCustomers(filterBy, filter, false)
+    onButtonFilterClick(form) {
+        this.customerService.customerFilter.filterBy = form.filterBy.value;
+        this.customerService.customerFilter.filter = form.filter.value;
+        this.customerService.customerFilter.filterAll = false;
+        this.customerService.getCustomers()
              .subscribe(customers => this.customers = customers);
 
     }
 
     onButtonFilterAllClick() {
-        console.log('aqui O');
-        this.customerService.getCustomers('', '', true)
+        this.customerService.customerFilter.filterAll = true;
+        this.customerService.getCustomers()
             .subscribe(customers => this.customers = customers);
 
     }

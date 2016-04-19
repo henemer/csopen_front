@@ -5,6 +5,7 @@ import {CustomerListComponent} from '../customer/customerList.component'
 import {CustomerFormComponent} from '../customer/customerForm.component'
 import {CustomerDeleteComponent} from '../customer/customerDelete.component'
 import {CustomerShowComponent} from '../customer/customerShow.component'
+import {CustomerFilter} from "./customerFilter";
 
 @Component({
     selector: 'my-app',
@@ -19,14 +20,17 @@ export class CustomerComponent{
     public selectedCustomer;
     public deleteSelectedCustomer;
     public operation;
-    public customerService:CustomerService
-    
+    public customerService:CustomerService;
+    public customerFilter:CustomerFilter;
+
     constructor(customerService:CustomerService) {
         this.operation = 'list';
         this.customerService = customerService;
-        customerService.getCustomers('name','', true)
+        this.customerFilter = this.customerService.customerFilter;
+        customerService.getCustomers()
             .subscribe(customers => this.customers = customers);
-            
+
+
     }
     
    newCustomer() {
@@ -50,6 +54,8 @@ export class CustomerComponent{
     }
 
     onCloseForm() {
+        this.customerService.getCustomers()
+            .subscribe(customers => this.customers = customers);
         this.selectedCustomer = null;
         this.operation = 'list';
     }    
@@ -59,19 +65,23 @@ export class CustomerComponent{
     }
     
     onCloseDelete() {
-        this.deleteSelectedCustomer = null;
+        this.customerService.getCustomers()
+            .subscribe(customers => this.customers = customers);
+        this.selectedCustomer = null;
         this.operation = 'list';
-        this.customerService.getCustomers('name','',true)
-            .subscribe(customers => this.customers = customers);        
+
     }
     
     onShowCustomer(customer) {
-       this.selectedCustomer = customer;
-       this.operation = 'show';
+        this.customerService.show(customer.id)
+            .subscribe(customers =>  {this.selectedCustomer = customers; this.operation='show'});
+
     }
     
 
     onCloseShow() {
+        this.customerService.getCustomers()
+            .subscribe(customers => this.customers = customers);
         this.selectedCustomer = null;
         this.operation = 'list';
     }    

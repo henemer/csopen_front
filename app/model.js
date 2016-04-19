@@ -20,4 +20,5 @@ System.register(['./supplier/supplier', './customer/customer'], function(exports
         }
     }
 });
+// export * from './customer/customerFilter' 
 //# sourceMappingURL=model.js.map

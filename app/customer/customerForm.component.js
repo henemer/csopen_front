@@ -29,22 +29,63 @@ System.register(['angular2/core', '../model', '../service'], function(exports_1,
                     this.customerService = customerService;
                     this.customer = new model_1.Customer();
                     this.closeForm = new core_1.EventEmitter();
+                    this.active = true;
+                    this.testeClass = '';
+                    this.messageSuccess = '';
                 }
                 CustomerFormComponent.prototype.onButtonGravarClick = function (event) {
                     var _this = this;
+                    this.errorMessage = '';
                     if (this.customer.id > 0) {
-                        this.customerService.update(this.customer).subscribe(function (result) { return _this.closeFormCustomer(event); }, function (error) { return console.log('erro'); });
+                        this.customerService.update(this.customer).subscribe(function (result) { return _this.closeFormCustomer(event); }, function (error) { return _this.errorMessage = error; });
                     }
                     else {
-                        this.customerService.insert(this.customer).subscribe(function (result) { return _this.newCustomer(); }, function (error) { return console.log(error); });
+                        this.customerService.insert(this.customer).subscribe(function (result) { return _this.newCustomer(); }, function (error) { return _this.showErrors(error._body); });
                     }
                 };
                 CustomerFormComponent.prototype.newCustomer = function () {
+                    var _this = this;
+                    this.messageSuccess = 'Novo cliente gravado com sucesso !';
                     this.customer = new model_1.Customer();
                     this.customerService.getMaxCode(this.customer);
+                    this.active = false; // desabilita o form e reabilita para restaurar o pristine
+                    setTimeout(function () { return _this.active = true; }, 0);
+                    setTimeout(function () {
+                        this.messageSuccess = '';
+                    }.bind(this), 3000);
                 };
                 CustomerFormComponent.prototype.closeFormCustomer = function (Event) {
                     this.closeForm.next({});
+                };
+                CustomerFormComponent.prototype.showErrors = function (errors) {
+                    this.errorMessage = '';
+                    var teste = JSON.parse(errors);
+                    for (var i in teste) {
+                        if (teste.hasOwnProperty(i)) {
+                            this.errorMessage += ' - ' + teste[i] + '<br>';
+                        }
+                    }
+                };
+                CustomerFormComponent.prototype.blurCode = function (f) {
+                    var _this = this;
+                    var id = 0;
+                    if (this.customer.code == NaN) {
+                        return;
+                    }
+                    if (typeof this.customer.id !== "undefined") {
+                        id = this.customer.id;
+                    }
+                    this.customerService.codeExists(id, this.customer.code).subscribe(function (result) {
+                        if (result == true) {
+                            _this.errorMessage = 'Código já cadastrado, tente outro.';
+                            f.codigo.error = 'Código já cadastrado';
+                            _this.testeClass = 'ng-invalid';
+                        }
+                        else {
+                            _this.errorMessage = '';
+                            _this.testeClass = 'form-control';
+                        }
+                    });
                 };
                 CustomerFormComponent = __decorate([
                     core_1.Component({

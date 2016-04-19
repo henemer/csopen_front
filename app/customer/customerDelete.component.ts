@@ -22,7 +22,7 @@ export class CustomerDeleteComponent{
     clickDeleteCustomer(id) {
         this.customerService.delete(id).subscribe(
             result => this.closeDeleteCustomer(this.closeDelete),
-            error => console.log('erro')
+            error =>  console.log(<any>error)
         );        
     }
     

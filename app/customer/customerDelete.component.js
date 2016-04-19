@@ -36,7 +36,7 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                 }
                 CustomerDeleteComponent.prototype.clickDeleteCustomer = function (id) {
                     var _this = this;
-                    this.customerService.delete(id).subscribe(function (result) { return _this.closeDeleteCustomer(_this.closeDelete); }, function (error) { return console.log('erro'); });
+                    this.customerService.delete(id).subscribe(function (result) { return _this.closeDeleteCustomer(_this.closeDelete); }, function (error) { return console.log(error); });
                 };
                 CustomerDeleteComponent.prototype.closeDeleteCustomer = function (Event) {
                     this.closeDelete.next({});

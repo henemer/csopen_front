@@ -41,7 +41,8 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                     var _this = this;
                     this.operation = 'list';
                     this.customerService = customerService;
-                    customerService.getCustomers('name', '', true)
+                    this.customerFilter = this.customerService.customerFilter;
+                    customerService.getCustomers()
                         .subscribe(function (customers) { return _this.customers = customers; });
                 }
                 CustomerComponent.prototype.newCustomer = function () {
@@ -59,6 +60,9 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                     this.operation = 'delete';
                 };
                 CustomerComponent.prototype.onCloseForm = function () {
+                    var _this = this;
+                    this.customerService.getCustomers()
+                        .subscribe(function (customers) { return _this.customers = customers; });
                     this.selectedCustomer = null;
                     this.operation = 'list';
                 };
@@ -67,16 +71,20 @@ System.register(['angular2/core', '../model', '../service', '../customer/custome
                 };
                 CustomerComponent.prototype.onCloseDelete = function () {
                     var _this = this;
-                    this.deleteSelectedCustomer = null;
-                    this.operation = 'list';
-                    this.customerService.getCustomers('name', '', true)
+                    this.customerService.getCustomers()
                         .subscribe(function (customers) { return _this.customers = customers; });
+                    this.selectedCustomer = null;
+                    this.operation = 'list';
                 };
                 CustomerComponent.prototype.onShowCustomer = function (customer) {
-                    this.selectedCustomer = customer;
-                    this.operation = 'show';
+                    var _this = this;
+                    this.customerService.show(customer.id)
+                        .subscribe(function (customers) { _this.selectedCustomer = customers; _this.operation = 'show'; });
                 };
                 CustomerComponent.prototype.onCloseShow = function () {
+                    var _this = this;
+                    this.customerService.getCustomers()
+                        .subscribe(function (customers) { return _this.customers = customers; });
                     this.selectedCustomer = null;
                     this.operation = 'list';
                 };

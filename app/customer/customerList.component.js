@@ -41,25 +41,25 @@ System.register(['angular2/core', '../service'], function(exports_1, context_1) 
                 CustomerListComponent.prototype.onShow = function (sup) {
                     this.showSelectCustomer.next(sup);
                 };
-                CustomerListComponent.prototype.onButtonFilterClick = function (form, all) {
+                CustomerListComponent.prototype.onButtonFilterClick = function (form) {
                     var _this = this;
-                    console.log(all);
-                    var filterBy = form.filterBy.value;
-                    var filter = form.filter.value;
-                    this.customerService.getCustomers(filterBy, filter, false)
+                    this.customerService.customerFilter.filterBy = form.filterBy.value;
+                    this.customerService.customerFilter.filter = form.filter.value;
+                    this.customerService.customerFilter.filterAll = false;
+                    this.customerService.getCustomers()
                         .subscribe(function (customers) { return _this.customers = customers; });
                 };
                 CustomerListComponent.prototype.onButtonFilterAllClick = function () {
                     var _this = this;
-                    console.log('aqui O');
-                    this.customerService.getCustomers('', '', true)
+                    this.customerService.customerFilter.filterAll = true;
+                    this.customerService.getCustomers()
                         .subscribe(function (customers) { return _this.customers = customers; });
                 };
                 CustomerListComponent = __decorate([
                     core_1.Component({
                         selector: 'customer-list',
                         templateUrl: 'app/customer/customerList.component.html',
-                        inputs: ['customers'],
+                        inputs: ['customers', 'all', 'customerFilter'],
                         outputs: ['selectCustomer', 'clickHeader', 'deleteSelectCustomer', 'showSelectCustomer']
                     }), 
                     __metadata('design:paramtypes', [service_1.CustomerService])

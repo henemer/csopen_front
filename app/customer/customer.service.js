@@ -1,4 +1,4 @@
-System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../service'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../service', "./customerFilter"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var http_1, core_1, service_1;
+    var http_1, core_1, service_1, customerFilter_1;
     var CustomerService;
     return {
         setters:[
@@ -23,20 +23,28 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
             function (_1) {},
             function (service_1_1) {
                 service_1 = service_1_1;
+            },
+            function (customerFilter_1_1) {
+                customerFilter_1 = customerFilter_1_1;
             }],
         execute: function() {
             CustomerService = (function () {
                 function CustomerService(http) {
                     this.http = http;
+                    this.customerFilter = new customerFilter_1.CustomerFilter();
                     this.headers = new http_1.Headers();
                     this.headers.append('Content-Type', 'application/json');
+                    this.customerFilter = new customerFilter_1.CustomerFilter();
+                    this.customerFilter.filterBy = '?name__icontains=';
+                    this.customerFilter.filter = '';
+                    this.customerFilter.filterAll = false;
                 }
-                CustomerService.prototype.getCustomers = function (filterBy, filter, all) {
-                    if (all == true) {
-                        filterBy = '';
-                        filter = '';
+                CustomerService.prototype.getCustomers = function () {
+                    if (this.customerFilter.filterAll == true) {
+                        this.customerFilter.filterBy = '?name__icontains=';
+                        this.customerFilter.filter = '';
                     }
-                    return this.http.get(service_1.Config.BASE_URL + '/clientes/' + filterBy + filter)
+                    return this.http.get(service_1.Config.BASE_URL + '/clientes/' + this.customerFilter.filterBy + this.customerFilter.filter)
                         .map(function (res) { return res.json(); });
                 };
                 CustomerService.prototype.show = function (id) {
@@ -61,6 +69,11 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', '../
                     return this.http
                         .delete(service_1.Config.BASE_URL + '/clientes/' + id)
                         .map(function (res) { return res.json(); });
+                };
+                CustomerService.prototype.codeExists = function (id, code) {
+                    return this.http
+                        .get(service_1.Config.BASE_URL + '/clientes/codeexists/' + id + '/' + code).
+                        map(function (res) { return res.json(); });
                 };
                 CustomerService = __decorate([
                     core_1.Injectable(), 

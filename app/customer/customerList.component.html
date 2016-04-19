@@ -1,22 +1,22 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary ">
-            <div class="panel-heading">Filtro</div>
+            <div class="panel-heading">Filtro {{ customerService.filter }}</div>
             <div class="panel-body">
                 <form (ngSubmit)="onButtonFilterClick(f)" #f >
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label for="filterBy">Filtrar Por</label>
-                            <select class="form-control" id="filterBy">
+                            <select class="form-control" id="filterBy" [(ngModel)]="customerFilter.filterBy">
                                 <option value="?code=">Código</option>
-                                <option value="?name__icontains=" selected>Nome/R.Social</option>
-                                <option value="?nickname_icontains=">Apelido/Nome Fantasia</option>
+                                <option value="?name__icontains=">Nome/R.Social</option>
+                                <option value="?nickname__icontains=">Apelido/Nome Fantasia</option>
                              </select>
                         </div>
                         
                         <div class="form-group col-md-6">
                             <label for="filter">Filtro</label>
-                            <input type="input" class="form-control" maxLength="50" id="filter" >
+                            <input type="input" class="form-control" maxLength="50" id="filter" [(ngModel)]="customerFilter.filter"  >
                         </div>
                         <div class="form-group col-md-3">
                             <div class="row">

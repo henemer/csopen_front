@@ -4,15 +4,34 @@
         <div class="panel panel-primary ">
             <div class="panel-heading">Clientes - {{ customer.id }} </div>
             <div class="panel-body">
-                <form (ngSubmit)="onButtonGravarClick(f)" #f>
+                <div class="alert alert-danger"
+                     role="alert"
+                     *ngIf="errorMessage"
+                     [innerHTML]="'<h3>Erro !</h3>'+errorMessage">
+                </div>
+                <div class="alert alert-success"
+                     *ngIf="messageSuccess"
+                     >
+                    {{ messageSuccess }}
+                </div>
+
+                <form *ngIf="active" (ngSubmit)="onButtonGravarClick(f)" #f>
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label for="codigo">Código</label>
-                            <input type="number" class="form-control" maxLength="8" id="codigo" required placeholder="Código" [(ngModel)]="customer.code">
+                            <input type="number"
+                                   class="form-control {{ testeClass }}"
+                                   maxLength="8"
+                                   id="codigo"
+                                   required
+                                   placeholder="Código"
+                                   [(ngModel)]="customer.code"
+                                   (blur) = "blurCode(f)"
+                            >
                         </div>
                         
                         <div class="form-group col-md-9">
-                            <label for="nome">Nome/Razão Social</label>
+                            <label for="name">Nome/Razão Social</label>
                             <input type="input" class="form-control" 
                                 maxLength="50" id="name" 
                                 required 
@@ -20,7 +39,7 @@
                                 [(ngModel)]="customer.name"
                                 ngControl="name"
                                  #name="ngForm">
-                            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                            <div [hidden]="name.valid || name.pristine " class="alert alert-danger">
                                 O nome é obrigatório
                             </div>
                         </div>
@@ -108,6 +127,7 @@
                     <button type="submit" class="btn btn-primary" >Gravar</button>    
                     <button type="button" class="btn btn-primary" (click)="closeFormCustomer(Event)" >Voltar</button>
                 </form>
+
             </div>
         </div>
     </div>
