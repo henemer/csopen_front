@@ -2,3 +2,5 @@
 node_modules/
 dist/
 .idea/workspace.xml
+ app/*.js
+ app/*.js.map
