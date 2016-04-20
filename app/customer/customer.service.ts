@@ -50,7 +50,7 @@ export class CustomerService {
   
     public getMaxCode(c:Customer) {
         return this.http
-            .get(Config.BASE_URL+'/clientes/getmaxcode').subscribe(response => c.code = parseInt(response.text()));
+            .get(Config.BASE_URL+'/clientes/getmaxcode/').subscribe(response => c.code = parseInt(response.text()));
             
     }
     
