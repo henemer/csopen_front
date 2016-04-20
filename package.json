@@ -20,8 +20,6 @@
     "gulp": "^3.9.0",
     "gulp-typescript": "^2.8.0",
     "del": "^2.1.0"
-  },
-  "scripts": {
-    "tslint": "tslint -c tslint.json app/**/*.ts",
   }
+
 }

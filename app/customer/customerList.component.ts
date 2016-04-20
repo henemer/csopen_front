@@ -20,7 +20,6 @@ export class CustomerListComponent {
 
      constructor(customerService:CustomerService) {
          this.customerService = customerService;
-
     }
     
     onSelect(sup:Customer) {

@@ -18,7 +18,7 @@ export class CustomerFormComponent{
     messageSuccess = '';
 
     constructor(private customerService:CustomerService) {}
-    
+
     onButtonGravarClick(event) {
         this.errorMessage = '';
         if(this.customer.id > 0) {

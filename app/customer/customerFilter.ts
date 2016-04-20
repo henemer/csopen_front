@@ -3,4 +3,3 @@ export class CustomerFilter {
     filterBy:string;
     filterAll:boolean;
 }
-
