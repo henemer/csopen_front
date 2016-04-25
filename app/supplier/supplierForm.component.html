@@ -1,0 +1,72 @@
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">Fornecedores</div>
+            <div class="panel-body">
+                <div class="alert alert-danger"
+                     role="alert"
+                     *ngIf="errorMessage"
+                     [innerHTML]="'<h3>Erro !</h3>'+errorMessage">
+                </div>
+                <div class="alert alert-success"
+                     *ngIf="messageSuccess"
+                >
+                    {{ messageSuccess }}
+                </div>
+
+                <form *ngIf="active" (ngSubmit)="onButtonGravarClick(f)" #f>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="code">Código</label>
+                            <input type="number"
+                                   class="form-control {{ testeClass }}"
+                                   maxLength="8"
+                                   id="code"
+                                   required
+                                   placeholder="Código"
+                                   [(ngModel)]="supplier.code"
+                                   (blur) = "blurCode(f)"
+                            >
+                        </div>
+
+                        <div class="form-group col-md-9">
+                            <label for="company">Razão Social/Nome Fantasia</label>
+                            <input type="input" class="form-control"
+                                   maxLength="50" id="company"
+                                   required
+                                   placeholder="Razão Social/Nome"
+                                   [(ngModel)]="supplier.company"
+                                   ngControl="company"
+                                   #name="ngForm">
+                            <!--<div [hidden]="company.valid || company.pristine" class="alert alert-danger">-->
+                                <!--A razão social/nome é obrigatório-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="trade">Nome Fantasia/Apelido</label>
+                            <input type="input" class="form-control" id="trade" maxLength="50" placeholder="Nome Fantasia/Apelido" [(ngModel)]="supplier.trade">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="cnpj">CNPJ/CPF</label>
+                            <input type="input" class="form-control" id="cnpj" maxLength="18" placeholder="CNPJ/CPF" [(ngModel)]="supplier.cnpj">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="observation">Observações</label>
+                            <textarea rows="4" class="form-control" id="observation" placeholder="Observações" [(ngModel)]="supplier.observations"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" >Gravar</button>
+                    <button type="button" class="btn btn-primary" (click)="closeFormSupplier(Event)" >Voltar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

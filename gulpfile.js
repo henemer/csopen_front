@@ -21,7 +21,7 @@ gulp.task('compile', function() {
 
 
 // copy dependencies
-gulp.task('copy:libs', ['clean'], function() {
+gulp.task('copy:libs', function() {
     return gulp.src([
             'node_modules/angular2/bundles/angular2-polyfills.js',
             'node_modules/systemjs/dist/system.src.js',
@@ -34,7 +34,7 @@ gulp.task('copy:libs', ['clean'], function() {
 });
 
 // copy CSS
-gulp.task('copy:css',  ['clean'], function() {
+gulp.task('copy:css',  function() {
     return gulp.src([
         'forms.css',
         'node_modules/bootstrap/dist/css/bootstrap.min.css'])
@@ -43,7 +43,7 @@ gulp.task('copy:css',  ['clean'], function() {
 
 
 // copy static assets - i.e. non TypeScript compiled source
-gulp.task('copy:assets', ['clean'], function() {
+gulp.task('copy:assets', function() {
     return gulp.src(['app/**/*', 'index.html', '!app/**/*.ts'], { base : './' })
         .pipe(gulp.dest('dist'))
 });
@@ -56,7 +56,7 @@ gulp.task('default', ['build']);
 // Watch for changes
 gulp.task('watch', ['compile','copy:css', 'copy:assets', 'copy:libs'], function () {
     gulp.watch('app/**/*.ts', ['compile']);
-    gulp.watch('forms.css', ['copy:css']);
-    gulp.watch(['app/**/*', 'index.html', '!app/**/*.ts'], ['copy:assets'])
+    // gulp.watch('forms.css', ['copy:css']);
+    gulp.watch(['app/**/*', 'index.html', '!app/**/*.ts'], ['copy:assets', 'copy:libs', 'copy:css'])
 });
 

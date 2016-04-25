@@ -84,6 +84,9 @@ export class CustomerComponent{
             .subscribe(customers => this.customers = customers);
         this.selectedCustomer = null;
         this.operation = 'list';
-    }    
-   
+    }
+
+
+    public ngOnDestroy():void {
+    }
  }

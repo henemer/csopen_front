@@ -11,15 +11,15 @@ export interface IExceptionHandler {
     call(exception: any, stackTrace?: any, reason?: string): void;
 }
 
-export class MyExceptionHandler implements IExceptionHandler {
-    call(exception: any, stackTrace: any, reason: string): void {
-        console.log(exception);
-        alert('Não foi possível processar a sua requisição, verifique a conexão com a internet e tente novamente');
-    }
-}
+//export class MyExceptionHandler implements IExceptionHandler {
+    // call(exception: any, stackTrace: any, reason: string): void {
+    //     console.log(exception);
+    //     alert('Não foi possível processar a sua requisição, verifique a conexão com a internet e tente novamente');
+    // }
+// }
 
 
 bootstrap(AppComponent, [HTTP_PROVIDERS, ROUTER_PROVIDERS,
-    provide(LocationStrategy, {useClass: HashLocationStrategy}),
-    provide(ExceptionHandler, {useClass:MyExceptionHandler})
+    provide(LocationStrategy, {useClass: HashLocationStrategy})
+  //  provide(ExceptionHandler, {useClass:MyExceptionHandler})
 ]);

@@ -1,0 +1,35 @@
+<button *ngIf="operation=='list'"
+        type="button"
+        class="btn btn-primary"
+        (click)="newSupplier()">
+        Novo Fornecedor
+</button>
+<p></p>
+
+<supplier-form  *ngIf="(selectedSupplier && operation=='update') || operation=='new'"
+                [selectedSupplier]="selectedSupplier"
+                [supplier]="selectedSupplier"
+                (saveSupplier)="onSaveSupplier($event)"
+                (closeForm)="onCloseForm($event)" >
+</supplier-form>
+
+
+<supplier-list *ngIf="operation=='list'"
+               [suppliers]="suppliers"
+               [supplierFilter] = "supplierFilter"
+               (selectSupplier)="onSelectSupplier($event)"
+               (saveSupplier)="onSaveSupplier($event)"
+               (deleteSelectSupplier)="onDeleteSupplier($event)"
+               (showSelectSupplier)="onShowSupplier($event)"
+               (clickHeader)="onClickHeader($event)">
+</supplier-list>
+
+<supplier-delete *ngIf="operation=='delete'"
+                 [s]="deleteSelectedSupplier"
+                 (closeDelete)="onCloseDelete($event)" >
+</supplier-delete>
+
+<supplier-show *ngIf="operation=='show'"
+               [s]="selectedSupplier"
+               (closeShow)="onCloseShow($event)">
+</supplier-show>
