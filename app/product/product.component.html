@@ -1,0 +1,34 @@
+<button *ngIf="operation=='list'"
+        type="button"
+        class="btn btn-primary"
+        (click)="newProduct()">
+    Novo Produto
+</button>
+<p></p>
+
+<product-form  *ngIf="(selectedProduct && operation=='update') || operation=='new'"
+                [selectedProduct]="selectedProduct"
+                [product]="selectedProduct"
+                (saveProduct)="onSaveProduct($event)"
+                (closeForm)="onCloseForm($event)" >
+</product-form>
+
+
+<product-list *ngIf="operation=='list'"
+               [products]="products"
+               [productFilter] = "productFilter"
+               (selectProduct)="onSelectProduct($event)"
+               (saveProduct)="onSaveProduct($event)"
+               (deleteSelectProduct)="onDeleteProduct($event)"
+               (showSelectProduct)="onShowProduct($event)">
+</product-list>
+
+<product-delete *ngIf="operation=='delete'"
+                 [p]="deleteSelectedProduct"
+                 (closeDelete)="onCloseDelete($event)" >
+</product-delete>
+
+<product-show *ngIf="operation=='show'"
+               [p]="selectedProduct"
+               (closeShow)="onCloseShow($event)">
+</product-show>

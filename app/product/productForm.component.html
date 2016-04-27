@@ -1,0 +1,155 @@
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">Produtos</div>
+            <div class="panel-body">
+                <div class="alert alert-danger"
+                     role="alert"
+                     *ngIf="errorMessage"
+                     [innerHTML]="'<h3>Erro !</h3>'+errorMessage">
+                </div>
+                <div class="alert alert-success"
+                     *ngIf="messageSuccess"
+                >
+                    {{ messageSuccess }}
+                </div>
+
+                <form *ngIf="active" (ngSubmit)="onButtonGravarClick(f)" #f>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="code">Código</label>
+                            <input type="number"
+                                   class="form-control {{ testeClass }}"
+                                   maxLength="8"
+                                   id="code"
+                                   required
+                                   placeholder="Código"
+                                   [(ngModel)]="product.code"
+                                   (blur) = "blurCode(f)"
+                            >
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="description">Descrição</label>
+                            <input type="input" class="form-control"
+                                   maxLength="50" id="description"
+                                   required
+                                   placeholder="Descrição"
+                                   [(ngModel)]="product.description"
+                                   ngControl="description"
+                                   #description="ngForm">
+                            <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                                A descrição é obrigatória
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-1">
+                            <label for="unity">Unidade</label>
+                            <input type="input" class="form-control"
+                                   maxLength="3" id="unity"
+                                   placeholder="Unidade"
+                                   [(ngModel)]="product.unity"
+                                   ngControl="unity"
+                                   #name="ngForm">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="cost_price">Preço de Custo</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="cost_price"
+                                   maxLength="20"
+                                   [(ngModel)]="product.cost_price">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="profit_margin">Margem de Lucro</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="profit_margin"
+                                   maxLength="20"
+                                   [(ngModel)]="product.profit_margin">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="price">Preço de Venda</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="price"
+                                   maxLength="20"
+                                   [(ngModel)]="product.price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="reference">Referência</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="reference"
+                                   maxLength="20"
+                                   [(ngModel)]="product.reference">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="min_stock">Estoque Mínimo</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="min_stock"
+                                   maxLength="20"
+                                   [(ngModel)]="product.min_stock">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="max_stock">Estoque Máximo</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="max_stock"
+                                   maxLength="20"
+                                   [(ngModel)]="product.max_stock">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="bar_code">Código de Barras</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="bar_code"
+                                   maxlength="14"
+                                   [(ngModel)]="product.bar_code">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ncm">NCM</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="ncm"
+                                   maxlength="8"
+                                   [(ngModel)]="product.ncm">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="amount">Quantidade em Estoque</label>
+                            <input type="input"
+                                   class="form-control"
+                                   id="amount"
+                                   maxlength="20"
+                                   [(ngModel)]="product.amount">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="observation">Observações</label>
+                            <textarea rows="4"
+                                      class="form-control"
+                                      id="observation"
+                                      placeholder="Observações"
+                                      [(ngModel)]="product.observations"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-primary" >Gravar</button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            (click)="closeFormProduct(Event)" >Voltar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

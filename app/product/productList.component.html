@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">Filtro</div>
+            <div class="panel-body">
+                <form (ngSubmit)="onButtonFilterClick(f)" #f >
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="filterBy">Filtrar Por</label>
+                            <select class="form-control" id="filterBy" [(ngModel)]="productFilter.filterBy">
+                                <option value="?code=">Código</option>
+                                <option value="?description__icontains=">Descrição</option>
+                                <option value="?reference__icontains=">Referência</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="filter">Filtro</label>
+                            <input type="input"
+                                   class="form-control"
+                                   maxLength="50"
+                                   id="filter"
+                                   [(ngModel)]="productFilter.filter"  >
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="row">
+                                &nbsp;
+                            </div>
+                            <div class="row">
+                                <button type="submit" id="filtrar"
+                                        class="btn btn-primary"  >Filtrar</button>
+                                <button type="button" id="showAll"
+                                        (click)="onButtonFilterAllClick()"
+                                        class="btn btn-primary"  >Mostrar Todos</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-hover">
+    <thead >
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th>Unidade</th>
+        <th>Quantidade</th>
+        <th>Preço de Venda</th>
+        <th>Referência</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="#p of products" (click)="onSelect(p)">
+        <td><a (click)="onSelect(p)">Alterar</a> |
+            <a (click)="onDelete(p)">Excluir</a> |
+            <a (click)="onShow(p)">Consultar</a></td>
+        <td>{{p.code}}</td>
+        <td>{{p.description}}</td>
+        <td>{{p.unity}}</td>
+        <td>{{p.amount}}</td>
+        <td>{{p.price}}</td>
+        <td>{{p.reference}}</td>
+
+    </tr>
+    </tbody>
+</table>

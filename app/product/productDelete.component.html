@@ -1,0 +1,9 @@
+<h1>Confirma a Exclusão desse Produto ?</h1>
+
+<product-data [p]="p" >
+</product-data>
+
+
+
+<button type="button" class="btn btn-danger" (click)="clickDeleteProduct(p.id)">Excluir</button>
+<button type="button" class="btn btn-primary" (click)="closeDeleteProduct(Event)" >Voltar</button>
