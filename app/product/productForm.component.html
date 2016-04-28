@@ -58,6 +58,7 @@
                             <label for="cost_price">Preço de Custo</label>
                             <input type="input"
                                    myCurrency
+                                   [decimalPlaces] = 2
                                    class="form-control"
                                    id="cost_price"
                                    maxLength="20"
@@ -67,6 +68,8 @@
                             <label for="profit_margin">Margem de Lucro</label>
                             <input type="input"
                                    class="form-control"
+                                   myPercentage
+                                   [decimalPlaces]="4"
                                    id="profit_margin"
                                    maxLength="20"
                                    [(ngModel)]="product.profit_margin">
@@ -76,6 +79,8 @@
                             <input type="input"
                                    class="form-control"
                                    id="price"
+                                   myCurrency
+                                   [decimalPlaces] = 2
                                    maxLength="20"
                                    [(ngModel)]="product.price">
                         </div>

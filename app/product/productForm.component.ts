@@ -2,10 +2,11 @@ import {Component, EventEmitter} from "angular2/core";
 import {Product} from "../model";
 import {ProductService} from "../service";
 import {CurrencyDirective} from "../directives/currency.directive"
+import {PercentageDirective} from "../directives/percentage.directive";
 
 @Component({
     selector:'product-form',
-    directives: [CurrencyDirective],
+    directives: [CurrencyDirective, PercentageDirective],
     templateUrl: 'app/product/productForm.component.html',
     inputs:['product', 'selectedProduct'],
     outputs:['closeForm'],
