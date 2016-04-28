@@ -3,10 +3,11 @@ import {Product} from "../model";
 import {ProductService} from "../service";
 import {CurrencyDirective} from "../directives/currency.directive"
 import {PercentageDirective} from "../directives/percentage.directive";
+import {NumberDirective} from "../directives/number.directive";
 
 @Component({
     selector:'product-form',
-    directives: [CurrencyDirective, PercentageDirective],
+    directives: [CurrencyDirective, PercentageDirective, NumberDirective],
     templateUrl: 'app/product/productForm.component.html',
     inputs:['product', 'selectedProduct'],
     outputs:['closeForm'],
