@@ -47,7 +47,10 @@
     </thead>
     <tbody>
         <tr *ngFor="#c of customers">
-            <td><a (click)="onSelect(c)">Alterar</a> | <a (click)="onDelete(c)">Excluir</a> | <a (click)="onShow(c)">Consultar</a></td>
+            <td><button class="btn btn-primary" (click)="onSelect(c)"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button class="btn btn-primary" (click)="onDelete(c)"><spam class="glyphicon glyphicon-minus"></spam></button>
+                <button class="btn btn-primary" (click)="onShow(c)"><i class="glyphicon glyphicon-search"></i></button>
+            </td>
             <td>{{c.code}}</td>
             <td>{{c.name}}</td>
             <td>{{c.nickname}}</td>

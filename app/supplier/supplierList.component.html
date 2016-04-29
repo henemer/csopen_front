@@ -47,7 +47,10 @@
     </thead>
     <tbody>
         <tr *ngFor="#s of suppliers" (click)="onSelect(s)">
-            <td><a (click)="onSelect(s)">Alterar</a> | <a (click)="onDelete(s)">Excluir</a> | <a (click)="onShow(s)">Consultar</a></td>
+            <td><button class="btn btn-primary" (click)="onSelect(s)"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button class="btn btn-primary" (click)="onDelete(s)"><spam class="glyphicon glyphicon-minus"></spam></button>
+                <button class="btn btn-primary" (click)="onShow(s)"><i class="glyphicon glyphicon-search"></i></button>
+            </td>
             <td>{{s.code}}</td>
             <td>{{s.company}}</td>
             <td>{{s.trade}}</td>
