@@ -25,7 +25,8 @@ export class ProductService {
         }
 
         return this.http.get(Config.BASE_URL+'/produtos/'+this.productFilter.filterBy+this.productFilter.filter)
-            .map(res=> res.json());
+             .map(res=> res.json());
+
     }
 
     public show(id) {

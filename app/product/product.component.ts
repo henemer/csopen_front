@@ -33,17 +33,34 @@ export class ProductComponent{
 
     newProduct() {
         var p:Product = new Product();
+        p.cost_price = 'R$ 0,00';
+        p.profit_margin = 'R$ 0,00'
+        p.price = 'R$ 0,00';
+        p.max_stock = '0,000';
+        p.min_stock = '0,000';
+
         this.selectedProduct = p;
         this.operation = 'new';
     }
 
     onSelectProduct(product) {
         this.selectedProduct = product;
+        this.selectedProduct.price = this.formatStringCurrency(this.selectedProduct.price);
+        this.selectedProduct.cost_price = this.formatStringCurrency(this.selectedProduct.cost_price);
+        this.selectedProduct.max_stock = this.formatStringNumber(this.selectedProduct.max_stock);
+        this.selectedProduct.min_stock = this.formatStringNumber(this.selectedProduct.min_stock);
+        this.selectedProduct.profit_margin = this.formatStringPercentage(this.selectedProduct.profi_margin);
         this.operation = 'update';
     }
 
     onDeleteProduct(product) {
         this.deleteSelectedProduct = product;
+        this.deleteSelectedProduct.price = this.formatStringCurrency(this.deleteSelectedProduct.price);
+        this.deleteSelectedProduct.cost_price = this.formatStringCurrency(this.deleteSelectedProduct.cost_price);
+        this.deleteSelectedProduct.max_stock = this.formatStringNumber(this.deleteSelectedProduct.max_stock);
+        this.deleteSelectedProduct.min_stock = this.formatStringNumber(this.deleteSelectedProduct.min_stock);
+        this.deleteSelectedProduct.profit_margin = this.formatStringPercentage(this.deleteSelectedProduct.profi_margin);
+
         this.operation='delete';
     }
 
@@ -64,8 +81,14 @@ export class ProductComponent{
 
     onShowProduct(product) {
         this.productService.show(product.id)
-            .subscribe(products =>  {this.selectedProduct = products; this.operation='show'});
-
+            .subscribe(products =>  {
+                this.selectedProduct = products;
+                this.selectedProduct.price = this.formatStringCurrency(this.selectedProduct.price);
+                this.selectedProduct.cost_price = this.formatStringCurrency(this.selectedProduct.cost_price);
+                this.selectedProduct.max_stock = this.formatStringNumber(this.selectedProduct.max_stock);
+                this.selectedProduct.min_stock = this.formatStringNumber(this.selectedProduct.min_stock);
+                this.selectedProduct.profit_margin = this.formatStringPercentage(this.selectedProduct.profi_margin);
+                this.operation='show'});
     }
 
     onCloseShow() {
@@ -73,6 +96,57 @@ export class ProductComponent{
             .subscribe(products => this.selectedProduct = products);
         this.selectedProduct = null;
         this.operation = 'list';
+    }
+
+    formatStringCurrency(stringValue:String) {
+        var value;
+
+        value = Number(stringValue);
+
+        if(isNaN(value)) {
+            value = 0;
+        }
+
+        stringValue = value.toFixed(2);
+        stringValue = stringValue.replace('.',',');
+        stringValue = 'R$ ' + stringValue.replace(/(\d)(?=(\d{3})+\,)/g, '$1.');
+
+        return stringValue;
+
+    }
+
+    formatStringPercentage(stringValue:String) {
+        var value;
+
+        value = Number(stringValue);
+
+        if(isNaN(value)) {
+            value = 0;
+        }
+
+        stringValue = value.toFixed(2);
+        stringValue = stringValue.replace('.',',');
+        stringValue = stringValue.replace(/(\d)(?=(\d{3})+\,)/g, '$1.')+' %';
+
+        return stringValue;
+
+    }
+
+    formatStringNumber(stringValue:String, decimalPlaces:Number=3) {
+        var value;
+
+        value = Number(stringValue);
+
+        if(isNaN(value)) {
+            value = 0;
+        }
+
+        stringValue = value.toFixed(decimalPlaces);
+        stringValue = stringValue.replace('.',',');
+        stringValue = stringValue.replace(/(\d)(?=(\d{3})+\,)/g, '$1.');
+
+        return stringValue;
+
     }
 
 }

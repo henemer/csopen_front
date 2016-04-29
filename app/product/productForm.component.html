@@ -71,7 +71,7 @@
                                    myPercentage
                                    [decimalPlaces]="4"
                                    id="profit_margin"
-                                   maxLength="20"
+                                   maxLength="7"
                                    [(ngModel)]="product.profit_margin">
                         </div>
                         <div class="form-group col-md-4">
@@ -97,6 +97,8 @@
                         <div class="form-group col-md-4">
                             <label for="min_stock">Estoque Mínimo</label>
                             <input type="input"
+                                   myNumber
+                                   [decimalPlaces]="3"
                                    class="form-control"
                                    id="min_stock"
                                    maxLength="20"
@@ -105,6 +107,8 @@
                         <div class="form-group col-md-4">
                             <label for="max_stock">Estoque Máximo</label>
                             <input type="input"
+                                   [decimalPlaces]="3"
+                                   myNumber
                                    class="form-control"
                                    id="max_stock"
                                    maxLength="20"
@@ -127,16 +131,6 @@
                                    id="ncm"
                                    maxlength="8"
                                    [(ngModel)]="product.ncm">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="amount">Quantidade em Estoque</label>
-                            <input type="input"
-                                   myNumber
-                                   [decimalPlaces]="3"
-                                   class="form-control"
-                                   id="amount"
-                                   maxlength="20"
-                                   [(ngModel)]="product.amount">
                         </div>
                     </div>
                     <div class="row">

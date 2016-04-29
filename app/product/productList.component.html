@@ -56,14 +56,15 @@
     </thead>
     <tbody>
     <tr *ngFor="#p of products" (click)="onSelect(p)">
-        <td><a (click)="onSelect(p)">Alterar</a> |
-            <a (click)="onDelete(p)">Excluir</a> |
-            <a (click)="onShow(p)">Consultar</a></td>
+        <td><button class="btn btn-primary" (click)="onSelect(p)"><span class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-primary" (click)="onDelete(p)"><spam class="glyphicon glyphicon-minus"></spam></button>
+            <button class="btn btn-primary" (click)="onShow(p)"><i class="glyphicon glyphicon-search"></i></button></td>
         <td>{{p.code}}</td>
         <td>{{p.description}}</td>
         <td>{{p.unity}}</td>
-        <td>{{p.amount}}</td>
-        <td>{{p.price}}</td>
+        <td>{{ p.amount | number:'1.3-3'  }}</td>
+        <td>{{p.price | number:'1.2-2'}}</td>
+<!--        | currency:"BRL":2-->
         <td>{{p.reference}}</td>
 
     </tr>

@@ -26,8 +26,25 @@ export class ProductFormComponent{
 
     onButtonGravarClick(event) {
         this.errorMessage = '';
-        if(this.product.id > 0) {
-            this.productService.update(this.product).subscribe(
+
+        var pro =  new Product();
+
+        pro.id =  this.product.id;
+        pro.code = this.product.code;
+        pro.description = this.product.description;
+        pro.unity = this.product.unity;
+        pro.cost_price = this.numberStringConvert(this.product.cost_price);
+        pro.profit_margin = this.numberStringConvert(this.product.profit_margin);
+        pro.price = this.numberStringConvert(this.product.price);
+        pro.reference = this.product.reference;
+        pro.max_stock = this.numberStringConvert(this.product.max_stock);
+        pro.min_stock = this.numberStringConvert(this.product.min_stock);
+        pro.bar_code = this.product.bar_code;
+        pro.ncm = this.product.ncm;
+        pro.observations = this.product.observations;
+        
+        if(pro.id > 0) {
+            this.productService.update(pro).subscribe(
                 result => this.closeFormProduct(event),
                 error =>  this.errorMessage = <any>error
             );
@@ -35,7 +52,7 @@ export class ProductFormComponent{
         }
         else
         {
-            this.productService.insert(this.product).subscribe(
+            this.productService.insert(pro).subscribe(
                 result => this.newProduct(),
                 error => this.showErrors(error._body)
             );
@@ -46,6 +63,12 @@ export class ProductFormComponent{
     newProduct() {
         this.messageSuccess = 'Novo produto gravado com sucesso !';
         this.product = new Product();
+        this.product.profit_margin = 'R$ 0,00'
+        this.product.cost_price = 'R$ 0,00';
+        this.product.price = 'R$ 0,00';
+        this.product.max_stock = '0,000';
+        this.product.min_stock = '0,000';
+        
         this.active = false;  // desabilita o form e reabilita para restaurar o pristine
         setTimeout(()=> this.active=true, 0);
 
@@ -66,7 +89,7 @@ export class ProductFormComponent{
 
         for (var i in teste) {
             if (teste.hasOwnProperty(i)) {
-                this.errorMessage += ' - '+ teste[i] + '<br>';
+                this.errorMessage += i +' - '+ teste[i] + '<br>';
             }
         }
 
@@ -98,4 +121,13 @@ export class ProductFormComponent{
                 }
             })
     }
+
+    numberStringConvert(numberString:string) {
+        numberString = numberString.replace(/\./g,'' );
+        numberString = numberString.replace('R$ ','' );
+        numberString = numberString.replace(' %','' );
+        numberString = numberString.replace(',','.' );
+        return numberString;
+    }
 }
+

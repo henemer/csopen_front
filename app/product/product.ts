@@ -3,13 +3,13 @@ export class Product {
     code:number;
     description:string;
     unity:string;
-    cost_price:number;
-    profit_margin:number;
-    price:number;
+    cost_price:string;
+    profit_margin:string;
+    price:string;
     amount:number;
     reference:string;
-    max_stock:number;
-    min_stock:number;
+    max_stock:string;
+    min_stock:string;
     bar_code:string;
     ncm:string;
     observations:string;

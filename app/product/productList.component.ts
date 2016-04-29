@@ -14,7 +14,7 @@ export class ProductListComponent {
     deleteSelectProduct = new EventEmitter();
     showSelectProduct = new EventEmitter();
     productService:ProductService;
-    products:Product;
+    public products:Product[];
 
 
     constructor(productService:ProductService) {
@@ -38,15 +38,15 @@ export class ProductListComponent {
         this.productService.productFilter.filter = form.filter.value;
         this.productService.productFilter.filterAll = false;
         this.productService.getProducts()
-            .subscribe(products => this.products = products);
+            .subscribe((products:Product[]) => { this.products = products });
 
     }
 
     onButtonFilterAllClick() {
         this.productService.productFilter.filterAll = true;
         this.productService.getProducts()
-            .subscribe(products => this.products = products);
+            .subscribe(products =>this.products = products );
     }
-    
+ 
     
 }
