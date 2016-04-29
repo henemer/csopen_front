@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input} from 'angular2/core';
+import {Directive, Output, ElementRef, Input, EventEmitter} from 'angular2/core';
 import {isNumber} from "angular2/src/facade/lang";
 @Directive({
     selector: '[myCurrency]',
@@ -6,9 +6,13 @@ import {isNumber} from "angular2/src/facade/lang";
         '(blur)': 'onBlur($event)',
         '(focus)': 'onFocus($event)'
     }
+
 })
 export class CurrencyDirective {
+    @Output() ngModelChange:EventEmitter<any> = new EventEmitter()
+    value: any
     private _decimalPlaces = 2;
+
     private _el:ElementRef;
     @Input() set decimalPlaces(decimalPlaces:number){
         this._decimalPlaces = decimalPlaces || this._decimalPlaces;
@@ -33,6 +37,8 @@ export class CurrencyDirective {
         aux = 'R$ ' + aux.replace(/(\d)(?=(\d{3})+\,)/g, '$1.');
 
         $event.target.value = aux;
+        this.value = aux
+        this.ngModelChange.emit(this.value)
     }
 
     onFocus($event) {
@@ -43,9 +49,4 @@ export class CurrencyDirective {
         $event.target.value = value;
         $event.target.select();
     }
-
-//    onMouseLeave() { this._highlight(null); }
-//    private _highlight(color:string) {
-//        this._el.style.backgroundColor = color;
-//    }
 }

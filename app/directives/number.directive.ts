@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input} from 'angular2/core';
+import {Directive, ElementRef, Input, Output, EventEmitter} from 'angular2/core';
 
 @Directive({
     selector: '[myNumber]',
@@ -8,6 +8,8 @@ import {Directive, ElementRef, Input} from 'angular2/core';
     }
 })
 export class NumberDirective {
+    @Output() ngModelChange:EventEmitter<any> = new EventEmitter()
+    value: any
     private _decimalPlaces = 4;
     private _el:ElementRef;
     @Input() set decimalPlaces(decimalPlaces:number){
@@ -33,6 +35,9 @@ export class NumberDirective {
         aux = aux.replace(/(\d)(?=(\d{3})+\,)/g, '$1.');
 
         $event.target.value = aux;
+        this.value = aux
+        this.ngModelChange.emit(this.value)
+
     }
 
     onFocus($event) {
