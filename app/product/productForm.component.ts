@@ -4,6 +4,8 @@ import {ProductService} from "../service";
 import {CurrencyDirective} from "../directives/currency.directive"
 import {PercentageDirective} from "../directives/percentage.directive";
 import {NumberDirective} from "../directives/number.directive";
+import {FormattersService} from "../formatters/formatters.service";
+
 
 @Component({
     selector:'product-form',
@@ -11,7 +13,7 @@ import {NumberDirective} from "../directives/number.directive";
     templateUrl: 'app/product/productForm.component.html',
     inputs:['product', 'selectedProduct'],
     outputs:['closeForm'],
-    providers: [ProductService]
+    providers: [ProductService, FormattersService]
 
 })
 export class ProductFormComponent{
@@ -22,7 +24,7 @@ export class ProductFormComponent{
     testeClass = '';
     messageSuccess = '';
 
-    constructor(private productService:ProductService) {}
+    constructor(private productService:ProductService, private formattersService:FormattersService) {}
 
     onButtonGravarClick(event) {
         this.errorMessage = '';
@@ -129,5 +131,80 @@ export class ProductFormComponent{
         numberString = numberString.replace(',','.' );
         return numberString;
     }
+
+    onBlurCostPrice() {
+        var costPrice, price, profitMargin:number;
+        
+        costPrice = Number(this.numberStringConvert(this.product.cost_price));
+        price = Number(this.numberStringConvert(this.product.price));
+        
+        profitMargin = this.profitMarginCalc(costPrice, price) 
+
+        this.product.profit_margin = this.formattersService.numberToPercentageString(profitMargin);
+
+    }
+
+    onBlurPrice() {
+        var costPrice, price, profitMargin:number;
+
+        costPrice = Number(this.numberStringConvert(this.product.cost_price));
+        price = Number(this.numberStringConvert(this.product.price));
+
+        profitMargin = this.profitMarginCalc(costPrice, price)
+
+        this.product.profit_margin = this.formattersService.numberToPercentageString(profitMargin);
+
+    }
+
+    onBlurProfitMargin(f) {
+        var costPrice, price, profitMargin:number;
+
+        costPrice = Number(this.numberStringConvert(this.product.cost_price));
+        profitMargin = Number(this.numberStringConvert(this.product.profit_margin));
+
+        if(profitMargin > 100) {
+//            this.product.profit_margin = this.formattersService.numberToPercentageString(0);
+            f.profit_margin.value = '0';
+            alert('A margem de lucro não pode ser maior que 100%, o sistema calcula a margem de lucro '+
+                'com base no preço de venda.');
+            
+            return
+        }
+
+        price = this.priceCalc(costPrice, profitMargin)
+
+        this.product.price = this.formattersService.numberToCurrencyString(price);
+
+    }
+    
+
+    profitMarginCalc(costPrice:number, price:number) {
+        var profit_margin:number;
+
+        profit_margin = 0;
+
+        if(price == 0) {
+            return profit_margin;
+        }
+
+        profit_margin = ((price - costPrice) / price ) * 100;
+
+        return profit_margin;
+    }
+
+    priceCalc(costPrice:number, profitMargin:number) {
+        var price:number;
+
+        price = 0;
+
+        if(costPrice == 0) {
+            return price;
+        }
+
+        price = ( 1 / ((100 - profitMargin) / 100 )) * costPrice;
+
+        return price;
+    }
+    
 }
 

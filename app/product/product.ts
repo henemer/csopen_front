@@ -6,7 +6,7 @@ export class Product {
     cost_price:string;
     profit_margin:string;
     price:string;
-    amount:number;
+    amount:string;
     reference:string;
     max_stock:string;
     min_stock:string;
