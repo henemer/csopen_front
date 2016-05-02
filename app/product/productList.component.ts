@@ -1,12 +1,16 @@
 import {Component, EventEmitter} from 'angular2/core'
 import {Product} from '../model'
 import {ProductService} from '../service'
+import {MyCurrencyPipe} from "../pipes/myCurrencyPipe";
+import {MyNumberPipe} from "../pipes/myNumber";
+
 
 @Component({
     selector: 'product-list',
     templateUrl: 'app/product/productList.component.html',
     inputs:['products', 'productFilter' ],
-    outputs:['selectProduct', 'deleteSelectProduct','showSelectProduct']
+    outputs:['selectProduct', 'deleteSelectProduct','showSelectProduct'],
+    pipes: [MyCurrencyPipe, MyNumberPipe]
 
 })
 export class ProductListComponent {
@@ -19,6 +23,7 @@ export class ProductListComponent {
 
     constructor(productService:ProductService) {
         this.productService = productService;
+
     }
 
     onSelect(prod:Product) {

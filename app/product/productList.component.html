@@ -62,8 +62,8 @@
         <td>{{p.code}}</td>
         <td>{{p.description}}</td>
         <td>{{p.unity}}</td>
-        <td>{{ p.amount | number:'1.3-3'  }}</td>
-        <td>{{p.price | number:'1.2-2'}}</td>
+        <td>{{ p.amount | myNumber  }}</td>
+        <td>{{p.price | myCurrency }}</td>
 <!--        | currency:"BRL":2-->
         <td>{{p.reference}}</td>
 

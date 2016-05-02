@@ -28,7 +28,9 @@ gulp.task('copy:libs', function() {
             'node_modules/rxjs/bundles/Rx.js',
             'node_modules/angular2/bundles/angular2.dev.js',
             'node_modules/angular2/bundles/http.dev.js',
-            'node_modules/angular2/bundles/router.dev.js'
+            'node_modules/angular2/bundles/router.dev.js',
+            'node_modules/jquery/dist/jquery.min.js',
+            'node_modules/bootstrap/js/dropdown.js'
         ])
         .pipe(gulp.dest('dist/lib'))
 });
